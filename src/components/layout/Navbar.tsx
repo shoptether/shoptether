@@ -28,22 +28,26 @@ export function Navbar() {
           </div>
           
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center gap-6">
-            <Link href="/docs" className="text-gray-600 hover:text-gray-900">
-              Documentation
-            </Link>
-            <Link href="https://github.com/farahrobleh/shoptether" className="text-gray-600 hover:text-gray-900">
-              GitHub
-            </Link>
-            <Link href="/community" className="text-gray-600 hover:text-gray-900">
-              Community
-            </Link>
-            <Button variant="secondary">
-              <Link href="/docs/quickstart">Quick Start</Link>
-            </Button>
-            <Button variant="primary">
-              <Link href="https://github.com/farahrobleh/shoptether" className="text-white">Star on GitHub</Link>
-            </Button>
+          <div className="hidden lg:flex items-center">
+            <div className="flex items-center gap-6 mr-8"> {/* Added mr-8 to create space before buttons */}
+              <Link href="/docs" className="text-gray-600 hover:text-gray-900">
+                Documentation
+              </Link>
+              <Link href="https://github.com/farahrobleh/shoptether" className="text-gray-600 hover:text-gray-900">
+                GitHub
+              </Link>
+              <Link href="/community" className="text-gray-600 hover:text-gray-900">
+                Community
+              </Link>
+            </div>
+            <div className="flex items-center gap-3"> {/* Reduced gap-4 to gap-3 between buttons */}
+              <Button variant="secondary">
+                <Link href="/docs/quickstart">Quick Start</Link>
+              </Button>
+              <Button variant="primary">
+                <Link href="https://github.com/farahrobleh/shoptether" className="text-white">Star on GitHub</Link>
+              </Button>
+            </div>
           </div>
 
           {/* Mobile Menu Button */}
