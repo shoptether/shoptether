@@ -1,3 +1,9 @@
+<p align="center"><img src="./public/images/logo.png" width='500' style="margin-top: 10px; margin-bottom: -10px;"></p>
+
+![AppVeyor](https://img.shields.io/badge/version-1.0.0-blue.svg)
+[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)]
+
+
 **ShopTether SDK**: 
 
 Unlock seamless connectivity for your Shopify store with ShopTether, the open-source integration SDK designed for merchants looking to simplify their app ecosystem. Whether you want to connect with popular CRMs, email marketing platforms, or accounting tools, ShopTether makes it easy—no extensive coding required!
