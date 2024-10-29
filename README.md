@@ -1,7 +1,7 @@
-<p align="center"><img src="./public/images/logo.png" width='500' style="margin-top: 10px; margin-bottom: -10px;"></p>
+<p align="center"><img src="./public/images/logo.png" width='400' style="margin-top: 10px; margin-bottom: -10px;"></p>
 
 ![AppVeyor](https://img.shields.io/badge/version-1.0.0-blue.svg)
-[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)]
+![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)
 
 
 **ShopTether SDK**: 
