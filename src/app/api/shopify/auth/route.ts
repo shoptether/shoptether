@@ -30,14 +30,17 @@ export async function POST(req: Request) {
     // Generate a nonce for security
     const nonce = Math.random().toString(36).substring(2)
     
-    // Store nonce in database/session (we'll implement this later)
-    
     // Generate Shopify OAuth URL
     const authUrl = `https://${shopUrl}/admin/oauth/authorize?` + 
       `client_id=${SHOPIFY_CLIENT_ID}&` +
       `scope=${SHOPIFY_SCOPES}&` +
       `redirect_uri=${encodeURIComponent(process.env.SHOPIFY_REDIRECT_URI!)}&` +
       `state=${nonce}`
+
+    // Debug log
+    console.log('Generated Auth URL:', authUrl)
+    console.log('Client ID:', SHOPIFY_CLIENT_ID)
+    console.log('Redirect URI:', process.env.SHOPIFY_REDIRECT_URI)
 
     return NextResponse.json({ authUrl })
   } catch (error) {
