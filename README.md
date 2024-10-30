@@ -6,7 +6,7 @@
 
 **ShopTether**: 
 
-Unlock seamless connectivity for your Shopify store with ShopTether, the open-source integration tool designed for merchants looking to simplify their app ecosystem. Whether you want to connect with popular CRMs, email marketing platforms, or accounting tools, ShopTether makes it easy—no extensive coding required!
+Unlock seamless connectivity for your Shopify store with ShopTether, the open-source integration tool designed for merchants looking to simplify their app ecosystem. Whether you want to connect with popular CRMs, email marketing platforms, or accounting tools, ShopTether makes it easy — no extensive coding required!
 
 Key Features:
 - **User-Friendly Interface**: Set up and manage integrations effortlessly with our intuitive dashboard.
