@@ -9,6 +9,23 @@ const inter = Inter({ subsets: ['latin'] })
 export const metadata: Metadata = {
   title: 'ShopTether - Shopify Integration Tool',
   description: 'Connect your Shopify store with essential services and streamline your operations.',
+  icons: {
+    icon: [
+      {
+        url: '/images/shop-tether-official-logo.jpg',
+        sizes: 'any',
+      },
+      {
+        url: '/images/shop-tether-official-logo.jpg',
+        type: 'image/jpg',
+        sizes: '32x32',
+      },
+    ],
+    apple: {
+      url: '/apple-touch-icon.png',
+      sizes: '180x180',
+    },
+  },
 }
 
 export default function RootLayout({
