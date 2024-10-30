@@ -1,6 +1,7 @@
 import { ClerkProvider } from '@clerk/nextjs'
 import { Inter } from 'next/font/google'
 import { Navbar } from '@/components/layout/Navbar'
+import { Toaster } from "react-hot-toast"
 import type { Metadata } from "next"
 import './globals.css'
 
@@ -39,6 +40,7 @@ export default function RootLayout({
         <body className={inter.className}>
           <Navbar />
           {children}
+          <Toaster />
         </body>
       </html>
     </ClerkProvider>

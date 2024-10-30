@@ -15,6 +15,7 @@
     "@headlessui/react": "^2.2.0",
     "@heroicons/react": "^2.1.5",
     "@prisma/client": "^5.21.1",
+    "@radix-ui/react-dialog": "^1.1.2",
     "@shopify/shopify-api": "^11.6.0",
     "@tremor/react": "^3.18.3",
     "clsx": "^2.1.1",
@@ -22,6 +23,7 @@
     "next": "15.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-hot-toast": "^2.4.1",
     "tailwind-merge": "^2.5.4"
   },
   "devDependencies": {
