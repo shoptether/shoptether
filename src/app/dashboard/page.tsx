@@ -4,6 +4,7 @@ import { auth } from '@clerk/nextjs/server'
 import { redirect } from 'next/navigation'
 import { DashboardLayout } from '@/components/dashboard/DashboardLayout'
 import { Card, Title, Text } from '@tremor/react'
+import { ShopifyConnect } from '@/components/integrations/ShopifyConnect'
 
 export default async function DashboardPage() {
   const { userId } = await auth()
@@ -35,7 +36,8 @@ export default async function DashboardPage() {
         <Card>
           <Title>Available Integrations</Title>
           <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {/* Integration cards will go here */}
+            <ShopifyConnect />
+            {/* Other integration cards will go here */}
           </div>
         </Card>
       </div>
