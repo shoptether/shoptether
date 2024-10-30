@@ -19,8 +19,8 @@ export const metadata: Metadata = {
   description: 'Connect your Shopify store to popular services like Mailchimp, Salesforce, and QuickBooks with our free, open-source SDK.',
   keywords: ['shopify', 'SDK', 'integration', 'open source', 'mailchimp', 'salesforce', 'quickbooks'],
   icons: {
-    icon: '/images/favicon.ico',
-    apple: '/images/logo.png',
+    icon: '/images/shop-tether-official-logo.jpg',
+    apple: '/images/shop-tether-official-logo.jpg',
   },
 };
 
