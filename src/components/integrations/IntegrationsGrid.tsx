@@ -47,13 +47,16 @@ export function IntegrationsGrid() {
 
   const handleDisconnect = async (id: string) => {
     try {
-      const response = await fetch(`/api/integrations/${id}/disconnect`, {
+      const response = await fetch('/api/integrations/disconnect', {
         method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ integration: id }),
       })
 
       if (!response.ok) throw new Error('Failed to disconnect')
 
-      // Update local state
       setIntegrations(current =>
         current.map(integration =>
           integration.id === id
