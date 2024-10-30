@@ -14,8 +14,8 @@ const features = [
     icon: <PuzzlePieceIcon className="w-8 h-8" />,
   },
   {
-    title: 'Developer Friendly',
-    description: 'Simple API design with comprehensive documentation and examples.',
+    title: 'User Friendly',
+    description: 'No coding required. Connect your business tools through our straightforward dashboard interface.',
     icon: <CommandLineIcon className="w-8 h-8" />,
   },
   {
