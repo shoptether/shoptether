@@ -15,7 +15,7 @@ const features = [
   },
   {
     title: 'User Friendly',
-    description: 'No coding required. Connect your business tools through our straightforward dashboard interface.',
+    description: 'No coding required. Connect your business tools through our dashboard interface.',
     icon: <CommandLineIcon className="w-8 h-8" />,
   },
   {
