@@ -1,16 +1,10 @@
-import { NextRequest, NextResponse } from 'next/server'
+import { NextResponse } from 'next/server'
 import { auth } from '@clerk/nextjs/server'
 import { prisma } from '@/lib/prisma'
 
-type Props = {
-  params: {
-    integration: string
-  }
-}
-
 export async function POST(
-  req: NextRequest,
-  context: Props
+  request: Request,
+  context: { params: { integration: string } }
 ) {
   try {
     const { userId } = await auth()
