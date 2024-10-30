@@ -1,6 +1,6 @@
 'use client'
 
-import { Card, Title, Text, Badge } from '@tremor/react'
+import { Title, Text, Badge } from '@tremor/react'
 import { Button } from '@/components/ui/Button'
 import { IntegrationProps, IntegrationStatus } from '@/types/integration'
 
@@ -12,10 +12,10 @@ const statusColors: Record<IntegrationStatus, string> = {
 }
 
 export function IntegrationCard({ integration, onConnect, onDisconnect }: IntegrationProps) {
-  const { id, name, description, status, lastSynced } = integration
+  const { id, name, description, status } = integration
   
   return (
-    <Card>
+    <div className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm">
       <div className="flex items-start justify-between">
         <div>
           <Title>{name}</Title>
@@ -24,11 +24,6 @@ export function IntegrationCard({ integration, onConnect, onDisconnect }: Integr
             <Badge color={statusColors[status]}>
               {status.charAt(0).toUpperCase() + status.slice(1)}
             </Badge>
-            {lastSynced && (
-              <Text className="text-sm text-gray-500 mt-1">
-                Last synced: {lastSynced.toLocaleDateString()}
-              </Text>
-            )}
           </div>
         </div>
         
@@ -39,6 +34,6 @@ export function IntegrationCard({ integration, onConnect, onDisconnect }: Integr
           {status === 'connected' ? 'Disconnect' : 'Connect'}
         </Button>
       </div>
-    </Card>
+    </div>
   )
 }
