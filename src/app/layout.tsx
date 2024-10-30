@@ -6,6 +6,11 @@ import './globals.css'
 
 const inter = Inter({ subsets: ['latin'] })
 
+export const metadata: Metadata = {
+  title: 'ShopTether - Shopify Integration Tool',
+  description: 'Connect your Shopify store with essential services and streamline your operations.',
+}
+
 export default function RootLayout({
   children,
 }: {
