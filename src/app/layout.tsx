@@ -1,5 +1,6 @@
-import { Navbar } from '@/components/layout/Navbar'
+import { ClerkProvider } from '@clerk/nextjs'
 import { Inter, Poppins } from 'next/font/google'
+import { Navbar } from '@/components/layout/Navbar'
 import type { Metadata } from "next"
 import './globals.css'
 
@@ -26,15 +27,17 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: {
+  children: React.ReactNode
+}) {
   return (
-    <html lang="en" className={`${inter.variable} ${poppins.variable}`}>
-      <body className="bg-white antialiased">
-        <Navbar />
-        {children}
-      </body>
-    </html>
-  );
+    <ClerkProvider>
+      <html lang="en">
+        <body className={inter.className}>
+          <Navbar />
+          {children}
+        </body>
+      </html>
+    </ClerkProvider>
+  )
 }

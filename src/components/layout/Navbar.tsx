@@ -42,7 +42,7 @@ export function Navbar() {
             </div>
             <div className="flex items-center gap-3"> {/* Reduced gap-4 to gap-3 between buttons */}
               <Button variant="secondary">
-                <Link href="/docs/quickstart">Quick Start</Link>
+                <Link href="/sign-in">Quick Start</Link>
               </Button>
               <Button variant="primary">
                 <Link href="https://github.com/farahrobleh/shoptether" className="text-white">Star on GitHub</Link>
@@ -86,7 +86,7 @@ export function Navbar() {
             </Link>
             <div className="px-3 pt-2 space-y-2">
               <Button variant="secondary" className="w-full">
-                <Link href="/docs/quickstart">Quick Start</Link>
+                <Link href="/sign-in">Quick Start</Link>
               </Button>
               <Button variant="primary" className="w-full">
                 <Link href="https://github.com/farahrobleh/shoptether" className="text-white">Star on GitHub</Link>
