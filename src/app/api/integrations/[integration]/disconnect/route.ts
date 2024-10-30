@@ -2,9 +2,13 @@ import { NextResponse } from 'next/server'
 import { auth } from '@clerk/nextjs/server'
 import { prisma } from '@/lib/prisma'
 
+interface RouteSegment {
+  integration: string
+}
+
 export async function POST(
   request: Request,
-  context: { params: { integration: string } }
+  { params }: { params: RouteSegment }
 ) {
   try {
     const { userId } = await auth()
@@ -12,7 +16,7 @@ export async function POST(
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
 
-    const { integration } = context.params
+    const { integration } = params
 
     if (integration === 'shopify') {
       await prisma.shopifyConnection.deleteMany({
