@@ -1,6 +1,5 @@
 'use client'
 
-import { useState } from 'react'
 import { UserButton } from "@clerk/nextjs"
 import { 
   HomeIcon, 
@@ -9,8 +8,6 @@ import {
 } from '@heroicons/react/24/outline'
 
 export function DashboardLayout({ children }: { children: React.ReactNode }) {
-  const [sidebarOpen, setSidebarOpen] = useState(false)
-
   const navigation = [
     { name: 'Overview', href: '/dashboard', icon: HomeIcon },
     { name: 'Integrations', href: '/dashboard/integrations', icon: PuzzlePieceIcon },
