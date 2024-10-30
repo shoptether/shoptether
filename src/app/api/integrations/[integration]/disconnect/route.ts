@@ -2,9 +2,15 @@ import { NextResponse } from 'next/server'
 import { auth } from '@clerk/nextjs/server'
 import { prisma } from '@/lib/prisma'
 
+interface RouteParams {
+  params: {
+    integration: string
+  }
+}
+
 export async function POST(
   request: Request,
-  { params }: { params: { integration: string } }
+  { params }: RouteParams
 ) {
   try {
     const { userId } = await auth()
