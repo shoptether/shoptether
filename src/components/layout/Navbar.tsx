@@ -30,19 +30,19 @@ export function Navbar() {
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center">
             <div className="flex items-center gap-6 mr-8"> {/* Added mr-8 to create space before buttons */}
-              <Link href="/docs" className="text-gray-600 hover:text-gray-900">
+              <Link href="https://shoptether.gitbook.io/shoptether" className="text-gray-600 hover:text-gray-900">
                 Documentation
               </Link>
               <Link href="https://github.com/shoptether/shoptether" className="text-gray-600 hover:text-gray-900">
                 GitHub
               </Link>
-              <Link href="/community" className="text-gray-600 hover:text-gray-900">
+              <Link href="https://community.shopify.com/c/shopify-community/ct-p/en" className="text-gray-600 hover:text-gray-900">
                 Community
               </Link>
             </div>
             <div className="flex items-center gap-3"> {/* Reduced gap-4 to gap-3 between buttons */}
               <Button variant="secondary">
-                <Link href="/sign-in">Quick Start</Link>
+                <Link href="/sign-in">Sign Up</Link>
               </Button>
               <Button variant="primary">
                 <Link href="https://github.com/shoptether/shoptether" className="text-white">Star on GitHub</Link>
@@ -79,7 +79,7 @@ export function Navbar() {
               GitHub
             </Link>
             <Link 
-              href="/community" 
+              href="https://community.shopify.com/c/shopify-community/ct-p/en" 
               className="block px-3 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md"
             >
               Community
