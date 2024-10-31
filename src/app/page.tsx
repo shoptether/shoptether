@@ -8,7 +8,7 @@ export default function Home() {
         <Hero />
         <Features />
       </main>
-      <footer className="bg-gradient-to-b from-white to-blue-50/20">
+      <footer className="bg-gradient-to-br from-indigo-50/80 via-white to-blue-50/80">
         <div className="mx-auto max-w-6xl px-6 py-12 lg:px-8">
           <div className="grid grid-cols-2 gap-8 md:grid-cols-4 justify-items-center">
             <div className="w-full max-w-xs">
