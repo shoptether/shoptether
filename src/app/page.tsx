@@ -24,9 +24,10 @@ export default function Home() {
                 Product
               </h3>
               <ul className="space-y-2 text-sm text-gray-600">
-                <li><a href="/docs" className="hover:text-gray-900">Documentation</a></li>
-                <li><a href="https://github.com/farahrobleh/shoptether" className="hover:text-gray-900">GitHub</a></li>
-                <li><a href="/community" className="hover:text-gray-900">Community</a></li>
+                <li><a href="https://shoptether.gitbook.io/shoptether" className="hover:text-gray-900">Documentation</a></li>
+                <li><a href="https://github.com/shoptether/shoptether" className="hover:text-gray-900">GitHub</a></li>
+                <li><a href="https://community.shopify.com/c/shopify-community/ct-p/en" className="hover:text-gray-900">Community</a></li>
+                <li><a href="https://i.postimg.cc/j24WLk14/converted-image.jpg" className="hover:text-gray-900">Join Us</a></li>
               </ul>
             </div>
             <div className="w-full max-w-xs">
@@ -34,9 +35,9 @@ export default function Home() {
                 Resources
               </h3>
               <ul className="space-y-2 text-sm text-gray-600">
-                <li><a href="/examples" className="hover:text-gray-900">Examples</a></li>
-                <li><a href="/showcase" className="hover:text-gray-900">Showcase</a></li>
-                <li><a href="/contribute" className="hover:text-gray-900">Contribute</a></li>
+                <li><a href="https://i.postimg.cc/j24WLk14/converted-image.jpg" className="hover:text-gray-900">Examples</a></li>
+                <li><a href="https://i.postimg.cc/j24WLk14/converted-image.jpg" className="hover:text-gray-900">Showcase</a></li>
+                <li><a href="https://i.postimg.cc/j24WLk14/converted-image.jpg" className="hover:text-gray-900">Contribute</a></li>
               </ul>
             </div>
             <div className="w-full max-w-xs">
@@ -44,8 +45,8 @@ export default function Home() {
                 Legal
               </h3>
               <ul className="space-y-2 text-sm text-gray-600">
-                <li><a href="/privacy" className="hover:text-gray-900">Privacy</a></li>
-                <li><a href="/terms" className="hover:text-gray-900">Terms</a></li>
+                <li><a href="https://i.postimg.cc/j24WLk14/converted-image.jpg" className="hover:text-gray-900">Privacy</a></li>
+                <li><a href="https://i.postimg.cc/j24WLk14/converted-image.jpg" className="hover:text-gray-900">Terms</a></li>
               </ul>
             </div>
           </div>

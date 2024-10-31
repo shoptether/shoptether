@@ -18,7 +18,7 @@ export function Navbar() {
 
   const handleGitHub = () => {
     setIsMenuOpen(false) // Close menu first
-    window.open('https://github.com/yourusername/shoptether', '_blank')
+    window.open('https://github.com/shoptether/shoptether', '_blank')
   }
 
   return (
@@ -79,21 +79,21 @@ export function Navbar() {
         <div className={`md:hidden ${isMenuOpen ? 'block' : 'hidden'}`}>
           <div className="px-2 pt-2 pb-3 space-y-1">
             <a
-              href="https://docs.shoptether.com"
+              href="https://shoptether.gitbook.io/shoptether"
               className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50"
               onClick={() => setIsMenuOpen(false)}
             >
               Documentation
             </a>
             <a
-              href="https://github.com/yourusername/shoptether"
+              href="https://github.com/shoptether/shoptether"
               className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50"
               onClick={() => setIsMenuOpen(false)}
             >
               GitHub
             </a>
             <a
-              href="https://github.com/yourusername/shoptether/discussions"
+              href="https://community.shopify.com/c/shopify-community/ct-p/en"
               className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50"
               onClick={() => setIsMenuOpen(false)}
             >
