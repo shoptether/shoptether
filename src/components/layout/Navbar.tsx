@@ -78,16 +78,37 @@ export function Navbar() {
         {/* Mobile Menu */}
         <div className={`md:hidden ${isMenuOpen ? 'block' : 'hidden'}`}>
           <div className="px-2 pt-2 pb-3 space-y-1">
+            <a
+              href="https://docs.shoptether.com"
+              className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Documentation
+            </a>
+            <a
+              href="https://github.com/yourusername/shoptether"
+              className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              GitHub
+            </a>
+            <a
+              href="https://github.com/yourusername/shoptether/discussions"
+              className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Community
+            </a>
             <Button
               onClick={() => handleNavigation('/sign-up')}
-              className="w-full justify-center"
+              className="w-full justify-center mt-2"
             >
               Sign Up
             </Button>
             <Button
               onClick={handleGitHub}
               variant="secondary"
-              className="w-full justify-center"
+              className="w-full justify-center mt-2"
             >
               Star on GitHub
             </Button>
