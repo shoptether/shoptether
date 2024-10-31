@@ -35,8 +35,16 @@ export default function Home() {
                 Resources
               </h3>
               <ul className="space-y-2 text-sm text-gray-600">
-                <li><a href="https://marketplace.canva.com/EAF7VEK7WpU/1/0/1600w/canva-black-and-white-minimalist-simple-coming-soon-instagram-post-vNG7sydSQqg.jpg" className="hover:text-gray-900">Examples</a></li>
-                <li><a href="https://marketplace.canva.com/EAF7VEK7WpU/1/0/1600w/canva-black-and-white-minimalist-simple-coming-soon-instagram-post-vNG7sydSQqg.jpg" className="hover:text-gray-900">Showcase</a></li>
+                <li>
+                  <Link href="/coming-soon" className="hover:text-gray-900">
+                    Examples
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/coming-soon" className="hover:text-gray-900">
+                    Showcase
+                  </Link>
+                </li>
                 <li>
                   <Link href="/join-us" className="hover:text-gray-900">
                     Join Us
@@ -49,8 +57,16 @@ export default function Home() {
                 Legal
               </h3>
               <ul className="space-y-2 text-sm text-gray-600">
-                <li><a href="https://marketplace.canva.com/EAF7VEK7WpU/1/0/1600w/canva-black-and-white-minimalist-simple-coming-soon-instagram-post-vNG7sydSQqg.jpg" className="hover:text-gray-900">Privacy</a></li>
-                <li><a href="https://marketplace.canva.com/EAF7VEK7WpU/1/0/1600w/canva-black-and-white-minimalist-simple-coming-soon-instagram-post-vNG7sydSQqg.jpg" className="hover:text-gray-900">Terms</a></li>
+                <li>
+                  <Link href="/coming-soon" className="hover:text-gray-900">
+                    Privacy
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/coming-soon" className="hover:text-gray-900">
+                    Terms
+                  </Link>
+                </li>
               </ul>
             </div>
           </div>
