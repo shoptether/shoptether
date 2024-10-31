@@ -8,27 +8,37 @@ const roles = [
     commitment: '5-10 hours/week • 10 weeks',
     description: `We're seeking a UX Researcher to help shape ShopTether's product direction in its early stages. Your research will be crucial in identifying which Shopify integrations we should prioritize building to provide the most value to merchants.
 
+
 Key Responsibilities:
+
 • Conduct market research to identify gaps in current Shopify integration offerings
 • Interview Shopify merchants about their integration needs and pain points
 • Analyze competitor solutions and identify opportunities for differentiation
 • Present actionable insights to guide our product roadmap
 • Help establish our user research framework
 
+
 Ideal Background:
+
 • Experience in UX research methods and market analysis
 • Strong analytical and communication skills
 • Familiarity with e-commerce platforms (Shopify experience is a plus)
 • Passion for open-source projects
 
+
 Time Commitment:
+
 This is a 10-week volunteer position (excluding holiday weeks of Thanksgiving and December 25-January 1). The role requires 5-10 hours per week of flexible, remote work.
 
+
 Location & Work Style:
+
 We welcome applications from candidates in time zones between GMT-7 to GMT+1 (United States, Canada, and Europe). We believe in asynchronous, flexible work with minimal meetings. While some overlap with PST working hours is needed for occasional collaboration, we emphasize autonomous work and clear written communication.
 
+
 Benefits:
-Upon successful completion of the volunteer assignment, you&apos;ll receive:
+
+Upon successful completion of the volunteer assignment, you'll receive:
 • Detailed letter of recommendation
 • Verifiable work experience in UX research
 • Portfolio-ready project work
@@ -42,27 +52,37 @@ Upon successful completion of the volunteer assignment, you&apos;ll receive:
     commitment: '5-8 hours/week • 10 weeks',
     description: `Join our marketing team to help build ShopTether's presence and community before our official launch. We're looking for two marketing associates to work together on pre-launch promotion and community building.
 
+
 Key Responsibilities:
+
 • Grow ShopTether's LinkedIn presence and engagement
 • Increase GitHub visibility and star count
 • Create compelling content about our open-source journey
 • Develop our brand voice and messaging strategy
 • Build anticipation for upcoming features and launches
 
+
 Ideal Background:
+
 • Experience in digital marketing or content creation
 • Strong writing and communication skills
 • Understanding of developer communities and open-source
 • Social media management experience
 • Interest in e-commerce and SaaS
 
+
 Time Commitment:
+
 This is a 10-week volunteer position (excluding holiday weeks of Thanksgiving and December 25-January 1). The role requires 5-8 hours per week of flexible, remote work.
 
+
 Location & Work Style:
+
 We welcome applications from candidates in time zones between GMT-7 to GMT+1 (United States, Canada, and Europe). We believe in asynchronous, flexible work with minimal meetings. While some overlap with PST working hours is needed for occasional collaboration, we emphasize autonomous work and clear written communication.
 
+
 Benefits:
+
 Upon successful completion of the volunteer assignment, you'll receive:
 • Detailed letter of recommendation
 • Verifiable work experience in tech marketing
@@ -119,7 +139,12 @@ export default function JoinUs() {
                 </div>
                 <div className="prose max-w-none">
                   {role.description.split('\n\n').map((paragraph, i) => (
-                    <p key={i} className="text-gray-600 whitespace-pre-line">
+                    <p 
+                      key={i} 
+                      className={`text-gray-600 whitespace-pre-line ${
+                        paragraph.trim().endsWith(':') ? 'font-semibold mt-8 mb-4' : 'mb-6'
+                      }`}
+                    >
                       {paragraph}
                     </p>
                   ))}
