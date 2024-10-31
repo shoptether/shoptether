@@ -10,7 +10,7 @@ interface FeatureCardProps {
         <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-50 to-indigo-50 transform transition-transform group-hover:-translate-y-1" />
         <div className="relative p-8 rounded-2xl bg-white border border-gray-200">
           <div className="w-12 h-12 mb-4 text-blue-600">{icon}</div>
-          <h3 className="text-xl font-semibold mb-2">{title}</h3>
+          <h3 className="text-xl font-semibold mb-2 text-zinc-900">{title}</h3>
           <p className="text-gray-600">{description}</p>
         </div>
       </div>

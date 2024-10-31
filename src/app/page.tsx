@@ -8,7 +8,7 @@ export default function Home() {
         <Hero />
         <Features />
       </main>
-      <footer className="bg-zinc-50/50">
+      <footer className="bg-gradient-to-b from-white to-blue-50/20">
         <div className="mx-auto max-w-7xl px-6 py-12 lg:px-8">
           <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
             <div>
@@ -50,8 +50,8 @@ export default function Home() {
             </div>
           </div>
           
-          <div className="mt-8 border-t border-zinc-900/10 pt-8 md:flex md:items-center md:justify-center">
-            <p className="mt-8 text-center text-sm leading-5 text-gray-500">
+          <div className="mt-16 pt-4 border-t border-zinc-900/10">
+            <p className="text-center text-sm leading-5 text-gray-500">
               &copy; 2024 ShopTether. All rights reserved.
             </p>
           </div>
