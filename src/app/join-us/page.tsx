@@ -6,7 +6,7 @@ const roles = [
     type: 'Volunteer Position',
     location: 'Remote',
     commitment: '5-10 hours/week • 10 weeks',
-    description: `We&apos;re seeking a UX Researcher to help shape ShopTether&apos;s product direction in its early stages. Your research will be crucial in identifying which Shopify integrations we should prioritize building to provide the most value to merchants.
+    description: `We're seeking a UX Researcher to help shape ShopTether's product direction in its early stages. Your research will be crucial in identifying which Shopify integrations we should prioritize building to provide the most value to merchants.
 
 Key Responsibilities:
 • Conduct market research to identify gaps in current Shopify integration offerings
@@ -40,10 +40,10 @@ Upon successful completion of the volunteer assignment, you&apos;ll receive:
     type: 'Volunteer Position (2 openings)',
     location: 'Remote',
     commitment: '5-8 hours/week • 10 weeks',
-    description: `Join our marketing team to help build ShopTether&apos;s presence and community before our official launch. We&apos;re looking for two marketing associates to work together on pre-launch promotion and community building.
+    description: `Join our marketing team to help build ShopTether's presence and community before our official launch. We're looking for two marketing associates to work together on pre-launch promotion and community building.
 
 Key Responsibilities:
-• Grow ShopTether&apos;s LinkedIn presence and engagement
+• Grow ShopTether's LinkedIn presence and engagement
 • Increase GitHub visibility and star count
 • Create compelling content about our open-source journey
 • Develop our brand voice and messaging strategy
@@ -63,7 +63,7 @@ Location & Work Style:
 We welcome applications from candidates in time zones between GMT-7 to GMT+1 (United States, Canada, and Europe). We believe in asynchronous, flexible work with minimal meetings. While some overlap with PST working hours is needed for occasional collaboration, we emphasize autonomous work and clear written communication.
 
 Benefits:
-Upon successful completion of the volunteer assignment, you&apos;ll receive:
+Upon successful completion of the volunteer assignment, you'll receive:
 • Detailed letter of recommendation
 • Verifiable work experience in tech marketing
 • Portfolio of created content
@@ -82,7 +82,7 @@ export default function JoinUs() {
             Join Our Open Source Journey
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Help us build the future of Shopify integrations. We&apos;re looking for passionate volunteers to join our pre-launch team.
+            Help us build the future of Shopify integrations. We're looking for passionate volunteers to join our pre-launch team.
           </p>
         </div>
 
@@ -132,10 +132,10 @@ export default function JoinUs() {
         {/* Bottom CTA */}
         <div className="mt-16 text-center">
           <h3 className="text-2xl font-bold text-gray-900 mb-4">
-            Don&apos;t see a role that fits?
+            Don't see a role that fits?
           </h3>
           <p className="text-gray-600 mb-6">
-            We&apos;re always looking for passionate people to join our community. Reach out and let us know how you&apos;d like to contribute!
+            We're always looking for passionate people to join our community. Reach out and let us know how you'd like to contribute!
           </p>
           <a href="mailto:robleh@shoptether.com?subject=Interest in Contributing to ShopTether">
             <Button variant="secondary" size="lg">
