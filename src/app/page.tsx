@@ -1,5 +1,6 @@
 import { Hero } from '@/components/home/Hero'
 import { Features } from '@/components/home/Features'
+import Link from 'next/link'
 
 export default function Home() {
   return (
@@ -36,7 +37,11 @@ export default function Home() {
               <ul className="space-y-2 text-sm text-gray-600">
                 <li><a href="https://marketplace.canva.com/EAF7VEK7WpU/1/0/1600w/canva-black-and-white-minimalist-simple-coming-soon-instagram-post-vNG7sydSQqg.jpg" className="hover:text-gray-900">Examples</a></li>
                 <li><a href="https://marketplace.canva.com/EAF7VEK7WpU/1/0/1600w/canva-black-and-white-minimalist-simple-coming-soon-instagram-post-vNG7sydSQqg.jpg" className="hover:text-gray-900">Showcase</a></li>
-                <li><a href="https://marketplace.canva.com/EAF7VEK7WpU/1/0/1600w/canva-black-and-white-minimalist-simple-coming-soon-instagram-post-vNG7sydSQqg.jpg" className="hover:text-gray-900">Join Us</a></li>
+                <li>
+                  <Link href="/join-us" className="hover:text-gray-900">
+                    Join Us
+                  </Link>
+                </li>
               </ul>
             </div>
             <div className="w-full max-w-xs">
