@@ -33,7 +33,7 @@ export function Navbar() {
               <Link href="/docs" className="text-gray-600 hover:text-gray-900">
                 Documentation
               </Link>
-              <Link href="https://github.com/farahrobleh/shoptether" className="text-gray-600 hover:text-gray-900">
+              <Link href="https://github.com/shoptether/shoptether" className="text-gray-600 hover:text-gray-900">
                 GitHub
               </Link>
               <Link href="/community" className="text-gray-600 hover:text-gray-900">
@@ -45,7 +45,7 @@ export function Navbar() {
                 <Link href="/sign-in">Quick Start</Link>
               </Button>
               <Button variant="primary">
-                <Link href="https://github.com/farahrobleh/shoptether" className="text-white">Star on GitHub</Link>
+                <Link href="https://github.com/shoptether/shoptether" className="text-white">Star on GitHub</Link>
               </Button>
             </div>
           </div>
@@ -67,13 +67,13 @@ export function Navbar() {
         {isMenuOpen && (
           <div className="lg:hidden py-4 px-2 space-y-3 bg-white/95 border-t">
             <Link 
-              href="/docs" 
+              href="https://shoptether.gitbook.io/shoptether" 
               className="block px-3 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md"
             >
               Documentation
             </Link>
             <Link 
-              href="https://github.com/farahrobleh/shoptether" 
+              href="https://github.com/shoptether/shoptether" 
               className="block px-3 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md"
             >
               GitHub
@@ -86,10 +86,10 @@ export function Navbar() {
             </Link>
             <div className="px-3 pt-2 space-y-2">
               <Button variant="secondary" className="w-full">
-                <Link href="/sign-in">Quick Start</Link>
+                <Link href="/sign-in">Sign Up</Link>
               </Button>
               <Button variant="primary" className="w-full">
-                <Link href="https://github.com/farahrobleh/shoptether" className="text-white">Star on GitHub</Link>
+                <Link href="https://github.com/shoptether/shoptether" className="text-white">Star on GitHub</Link>
               </Button>
             </div>
           </div>

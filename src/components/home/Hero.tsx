@@ -23,12 +23,12 @@ export function Hero() {
             Connect your Shopify store to popular services like Mailchimp, Salesforce, and QuickBooks—without the complexity. Free and open source forever.
           </p>
           <div className="flex justify-center gap-4">
-            <Link href="https://github.com/shoptether" target="_blank">
+            <Link href="/sign-in">
               <Button size="lg" variant="primary">
-                View on GitHub
+                Go to Dashboard
               </Button>
             </Link>
-            <Link href="/docs">
+            <Link href="https://shoptether.gitbook.io/shoptether">
               <Button size="lg" variant="secondary">
                 Read Docs
               </Button>
