@@ -102,7 +102,7 @@ export default function JoinUs() {
             Join Our Open Source Journey
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Help us build the future of Shopify integrations. We're looking for passionate volunteers to join our pre-launch team.
+            Help us build the future of Shopify integrations. We&apos;re looking for passionate volunteers to join our pre-launch team.
           </p>
         </div>
 
@@ -157,10 +157,10 @@ export default function JoinUs() {
         {/* Bottom CTA */}
         <div className="mt-16 text-center">
           <h3 className="text-2xl font-bold text-gray-900 mb-4">
-            Don't see a role that fits?
+            Don&apos;t see a role that fits?
           </h3>
           <p className="text-gray-600 mb-6">
-            We're always looking for passionate people to join our community. Reach out and let us know how you'd like to contribute!
+            We&apos;re always looking for passionate people to join our community. Reach out and let us know how you&apos;d like to contribute!
           </p>
           <a href="mailto:robleh@shoptether.com?subject=Interest in Contributing to ShopTether">
             <Button variant="secondary" size="lg">
