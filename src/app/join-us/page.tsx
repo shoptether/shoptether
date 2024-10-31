@@ -36,6 +36,21 @@ Location & Work Style:
 We welcome applications from candidates in time zones between GMT-7 to GMT+1 (United States, Canada, and Europe). We believe in asynchronous, flexible work with minimal meetings. While some overlap with PST working hours is needed for occasional collaboration, we emphasize autonomous work and clear written communication.
 
 
+Role Status:
+
+This is not a "ghost" role - we are actively seeking to fill this position urgently. The posting will be removed immediately once a suitable candidate is selected.
+
+
+Selection Process:
+
+We respect your time and keep our process simple:
+• Send your resume and cover letter (plus any relevant links/portfolios) to robleh@shoptether.com
+• If selected, you'll have one casual 1-hour video chat with our founder
+• Same-day decision and onboarding if there's a match
+
+The interview is a personal, informal conversation about your skills, experiences, education, and desire to contribute. No technical assessments or multiple rounds - just a genuine discussion about the opportunity.
+
+
 Benefits:
 
 Upon successful completion of the volunteer assignment, you'll receive:
@@ -79,6 +94,21 @@ This is a 10-week volunteer position (excluding holiday weeks of Thanksgiving an
 Location & Work Style:
 
 We welcome applications from candidates in time zones between GMT-7 to GMT+1 (United States, Canada, and Europe). We believe in asynchronous, flexible work with minimal meetings. While some overlap with PST working hours is needed for occasional collaboration, we emphasize autonomous work and clear written communication.
+
+
+Role Status:
+
+This is not a "ghost" role - we are actively seeking to fill these two positions urgently. The posting will be removed immediately once suitable candidates are selected.
+
+
+Selection Process:
+
+We respect your time and keep our process simple:
+• Send your resume and cover letter (plus any relevant links/portfolios) to robleh@shoptether.com
+• If selected, you'll have one casual 1-hour video chat with our founder
+• Same-day decision and onboarding if there's a match
+
+The interview is a personal, informal conversation about your skills, experiences, education, and desire to contribute. No technical assessments or multiple rounds - just a genuine discussion about the opportunity.
 
 
 Benefits:
