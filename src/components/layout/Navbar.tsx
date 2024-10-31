@@ -5,9 +5,21 @@ import Image from 'next/image'
 import { Button } from '../ui/Button'
 import { useState } from 'react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
+import { useRouter } from 'next/navigation'
 
 export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const router = useRouter()
+
+  const handleNavigation = (url: string) => {
+    setIsMenuOpen(false) // Close menu first
+    router.push(url) // Then navigate
+  }
+
+  const handleGitHub = () => {
+    setIsMenuOpen(false) // Close menu first
+    window.open('https://github.com/yourusername/shoptether', '_blank')
+  }
 
   return (
     <nav className="fixed w-full bg-white/80 backdrop-blur-md z-50">
@@ -64,36 +76,23 @@ export function Navbar() {
         </div>
 
         {/* Mobile Menu */}
-        {isMenuOpen && (
-          <div className="lg:hidden py-4 px-2 space-y-3 bg-white/95 border-t">
-            <Link 
-              href="https://shoptether.gitbook.io/shoptether" 
-              className="block px-3 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md"
+        <div className={`md:hidden ${isMenuOpen ? 'block' : 'hidden'}`}>
+          <div className="px-2 pt-2 pb-3 space-y-1">
+            <Button
+              onClick={() => handleNavigation('/sign-up')}
+              className="w-full justify-center"
             >
-              Documentation
-            </Link>
-            <Link 
-              href="https://github.com/shoptether/shoptether" 
-              className="block px-3 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md"
+              Sign Up
+            </Button>
+            <Button
+              onClick={handleGitHub}
+              variant="secondary"
+              className="w-full justify-center"
             >
-              GitHub
-            </Link>
-            <Link 
-              href="https://community.shopify.com/c/shopify-community/ct-p/en" 
-              className="block px-3 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md"
-            >
-              Community
-            </Link>
-            <div className="px-3 pt-2 space-y-2">
-              <Button variant="secondary" className="w-full">
-                <Link href="/sign-in">Sign Up</Link>
-              </Button>
-              <Button variant="primary" className="w-full">
-                <Link href="https://github.com/shoptether/shoptether" className="text-white">Star on GitHub</Link>
-              </Button>
-            </div>
+              Star on GitHub
+            </Button>
           </div>
-        )}
+        </div>
       </div>
     </nav>
   )

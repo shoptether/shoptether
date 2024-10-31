@@ -8,11 +8,13 @@ export default function Home() {
         <Hero />
         <Features />
       </main>
-      <footer className="bg-gray-50 py-12 mt-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+      <footer className="bg-white">
+        <div className="mx-auto max-w-7xl px-6 py-12 md:flex md:items-center md:justify-between lg:px-8">
+          <div className="mt-8 grid grid-cols-2 gap-8 md:grid-cols-4">
             <div>
-              <h3 className="text-lg font-semibold mb-4">ShopTether</h3>
+              <h3 className="text-base font-semibold leading-7 text-gray-900">
+                ShopTether
+              </h3>
               <p className="text-gray-600 text-sm">
                 Building the future of e-commerce integration.
               </p>
@@ -40,9 +42,6 @@ export default function Home() {
                 <li><a href="/terms" className="hover:text-gray-900">Terms</a></li>
               </ul>
             </div>
-          </div>
-          <div className="border-t border-gray-200 mt-12 pt-8 text-center text-sm text-gray-600">
-            © {new Date().getFullYear()} ShopTether. All rights reserved.
           </div>
         </div>
       </footer>

@@ -18,3 +18,13 @@ body {
   color: var(--foreground);
   background: var(--background);
 }
+
+/* Ensure text visibility */
+.text-gray-900 {
+  color: #111827 !important;
+}
+
+/* Remove unwanted bar */
+section:last-of-type {
+  border-bottom: none;
+}
