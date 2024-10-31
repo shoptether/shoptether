@@ -20,7 +20,7 @@ const features = [
   },
   {
     title: 'Open Source',
-    description: 'Free to use, modify, and distribute. Community-driven development.',
+    description: 'Free to use, modify, and distribute worldwide. Community-driven development.',
     icon: <CubeTransparentIcon className="w-8 h-8" />,
   },
   {

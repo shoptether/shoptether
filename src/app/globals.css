@@ -28,3 +28,8 @@ body {
 section:last-of-type {
   border-bottom: none;
 }
+
+/* Ensure feature titles are always visible */
+.feature-title {
+  color: #18181b !important; /* zinc-900 */
+}

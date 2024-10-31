@@ -8,11 +8,11 @@ export default function Home() {
         <Hero />
         <Features />
       </main>
-      <footer className="bg-gray-100">
-        <div className="mx-auto max-w-7xl px-6 py-12 md:flex md:items-center md:justify-between lg:px-8">
-          <div className="mt-8 grid grid-cols-2 gap-8 md:grid-cols-4">
+      <footer className="bg-zinc-50/50">
+        <div className="mx-auto max-w-7xl px-6 py-12 lg:px-8">
+          <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
             <div>
-              <h3 className="text-base font-semibold leading-7 text-black">
+              <h3 className="text-base font-bold leading-7 text-zinc-900">
                 ShopTether
               </h3>
               <p className="text-gray-600 text-sm">
@@ -20,7 +20,7 @@ export default function Home() {
               </p>
             </div>
             <div>
-              <h3 className="text-base font-semibold leading-7 text-black">
+              <h3 className="text-base font-bold leading-7 text-zinc-900">
                 Product
               </h3>
               <ul className="space-y-2 text-sm text-gray-600">
@@ -30,7 +30,7 @@ export default function Home() {
               </ul>
             </div>
             <div>
-              <h3 className="text-base font-semibold leading-7 text-black">
+              <h3 className="text-base font-bold leading-7 text-zinc-900">
                 Resources
               </h3>
               <ul className="space-y-2 text-sm text-gray-600">
@@ -40,7 +40,7 @@ export default function Home() {
               </ul>
             </div>
             <div>
-              <h3 className="text-base font-semibold leading-7 text-black">
+              <h3 className="text-base font-bold leading-7 text-zinc-900">
                 Legal
               </h3>
               <ul className="space-y-2 text-sm text-gray-600">
@@ -48,6 +48,12 @@ export default function Home() {
                 <li><a href="/terms" className="hover:text-gray-900">Terms</a></li>
               </ul>
             </div>
+          </div>
+          
+          <div className="mt-8 border-t border-zinc-900/10 pt-8 md:flex md:items-center md:justify-center">
+            <p className="mt-8 text-center text-sm leading-5 text-gray-500">
+              &copy; 2024 ShopTether. All rights reserved.
+            </p>
           </div>
         </div>
       </footer>
