@@ -100,7 +100,7 @@ export function Navbar() {
               Community
             </a>
             <Button
-              onClick={() => handleNavigation('/sign-up')}
+              onClick={() => handleNavigation('/sign-in')}
               className="w-full justify-center mt-2"
             >
               Sign Up
