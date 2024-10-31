@@ -9,9 +9,9 @@ export default function Home() {
         <Features />
       </main>
       <footer className="bg-gradient-to-b from-white to-blue-50/20">
-        <div className="mx-auto max-w-7xl px-6 py-12 lg:px-8">
-          <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
-            <div>
+        <div className="mx-auto max-w-6xl px-6 py-12 lg:px-8">
+          <div className="grid grid-cols-2 gap-8 md:grid-cols-4 justify-items-center">
+            <div className="w-full max-w-xs">
               <h3 className="text-base font-bold leading-7 text-zinc-900">
                 ShopTether
               </h3>
@@ -19,7 +19,7 @@ export default function Home() {
                 Building the future of e-commerce integration.
               </p>
             </div>
-            <div>
+            <div className="w-full max-w-xs">
               <h3 className="text-base font-bold leading-7 text-zinc-900">
                 Product
               </h3>
@@ -29,7 +29,7 @@ export default function Home() {
                 <li><a href="/community" className="hover:text-gray-900">Community</a></li>
               </ul>
             </div>
-            <div>
+            <div className="w-full max-w-xs">
               <h3 className="text-base font-bold leading-7 text-zinc-900">
                 Resources
               </h3>
@@ -39,7 +39,7 @@ export default function Home() {
                 <li><a href="/contribute" className="hover:text-gray-900">Contribute</a></li>
               </ul>
             </div>
-            <div>
+            <div className="w-full max-w-xs">
               <h3 className="text-base font-bold leading-7 text-zinc-900">
                 Legal
               </h3>
