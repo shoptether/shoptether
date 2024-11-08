@@ -48,8 +48,8 @@ export function Navbar() {
               <Link href="https://github.com/shoptether/shoptether" className="text-gray-600 hover:text-gray-900">
                 GitHub
               </Link>
-              <Link href="https://community.shopify.com/c/shopify-community/ct-p/en" className="text-gray-600 hover:text-gray-900">
-                Community
+              <Link href="/about-us" className="text-gray-600 hover:text-gray-900">
+                About Us
               </Link>
             </div>
             <div className="flex items-center gap-3"> {/* Reduced gap-4 to gap-3 between buttons */}
@@ -93,11 +93,11 @@ export function Navbar() {
               GitHub
             </a>
             <a
-              href="https://community.shopify.com/c/shopify-community/ct-p/en"
+              href="/about-us"
               className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50"
               onClick={() => setIsMenuOpen(false)}
             >
-              Community
+              About Us
             </a>
             <Button
               onClick={() => handleNavigation('/sign-in')}

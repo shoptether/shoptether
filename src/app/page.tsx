@@ -27,7 +27,11 @@ export default function Home() {
               <ul className="space-y-2 text-sm text-gray-600">
                 <li><a href="https://shoptether.gitbook.io/shoptether" className="hover:text-gray-900">Documentation</a></li>
                 <li><a href="https://github.com/shoptether/shoptether" className="hover:text-gray-900">GitHub</a></li>
-                <li><a href="https://community.shopify.com/c/shopify-community/ct-p/en" className="hover:text-gray-900">Community</a></li>
+                <li>
+                  <Link href="/about-us" className="hover:text-gray-900">
+                    About Us
+                  </Link>
+                </li>
               </ul>
             </div>
             <div className="w-full max-w-xs">
