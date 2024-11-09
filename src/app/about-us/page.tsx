@@ -27,7 +27,36 @@ export default function AboutPage() {
       image: '/team/placeholder1.jpg', // Path to their image (replace all placeholder images with real images in public/team folder)
       description: 'Lorem ipsum dolor sit amet consectetur. Arcu in vestibulum ac lacerat commodo pellentesque.'
     },
-    // ... add 5 more team members with the same structure (TODO)
+    {
+      name: 'Lorem ipsum dolor', // Will be replaced with real names later
+      role: 'Role', // Add the team member's role
+      image: '/team/placeholder1.jpg', // Path to their image (replace all placeholder images with real images in public/team folder)
+      description: 'Lorem ipsum dolor sit amet consectetur. Arcu in vestibulum ac lacerat commodo pellentesque.'
+    },
+    {
+      name: 'Lorem ipsum dolor', // Will be replaced with real names later
+      role: 'Role', // Add the team member's role
+      image: '/team/placeholder1.jpg', // Path to their image (replace all placeholder images with real images in public/team folder)
+      description: 'Lorem ipsum dolor sit amet consectetur. Arcu in vestibulum ac lacerat commodo pellentesque.'
+    },
+    {
+      name: 'Lorem ipsum dolor', // Will be replaced with real names later
+      role: 'Role', // Add the team member's role
+      image: '/team/placeholder1.jpg', // Path to their image (replace all placeholder images with real images in public/team folder)
+      description: 'Lorem ipsum dolor sit amet consectetur. Arcu in vestibulum ac lacerat commodo pellentesque.'
+    },
+    {
+      name: 'Lorem ipsum dolor', // Will be replaced with real names later
+      role: 'Role', // Add the team member's role
+      image: '/team/placeholder1.jpg', // Path to their image (replace all placeholder images with real images in public/team folder)
+      description: 'Lorem ipsum dolor sit amet consectetur. Arcu in vestibulum ac lacerat commodo pellentesque.'
+    },
+    {
+      name: 'Lorem ipsum dolor', // Will be replaced with real names later
+      role: 'Role', // Add the team member's role
+      image: '/team/placeholder1.jpg', // Path to their image (replace all placeholder images with real images in public/team folder)
+      description: 'Lorem ipsum dolor sit amet consectetur. Arcu in vestibulum ac lacerat commodo pellentesque.'
+    }
   ]
 
   // Step 5: Define our company values
