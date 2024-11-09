@@ -67,7 +67,26 @@ export default function AboutPage() {
       title: 'Consistent Communication',
       description: 'Regular updates and clear communication channels'
     },
-    // ... add 4 more values with the same structure (TODO)
+    {
+      icon: '📈', 
+      title: 'Regular Updates on Progress',
+      description: 'Transparent progress tracking and feedback loops'
+    },
+    {
+      icon: '🏆', 
+      title: 'Quality Over Quantity',
+      description: 'Focus on delivering high-quality, impactful results'
+    },
+    {
+      icon: '📚', 
+      title: 'Learning Mindset',
+      description: 'Encouragement for continuous learning and growth'
+    },
+    {
+      icon: '🤝', 
+      title: 'Collaborative Spirit',
+      description: 'Emphasizing teamwork and open collaboration'
+    }
   ]
 
   // Step 6: Create the page layout
