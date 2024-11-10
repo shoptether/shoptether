@@ -30,31 +30,31 @@ export default function AboutPage() {
     {
       name: 'Lorem ipsum dolor', // Will be replaced with real names later
       role: 'Role', // Add the team member's role
-      image: '/team/placeholder1.jpg', // Path to their image (replace all placeholder images with real images in public/team folder)
+      image: '/team/placeholder2.jpg', // Path to their image (replace all placeholder images with real images in public/team folder)
       description: 'Lorem ipsum dolor sit amet consectetur. Arcu in vestibulum ac lacerat commodo pellentesque.'
     },
     {
       name: 'Lorem ipsum dolor', // Will be replaced with real names later
       role: 'Role', // Add the team member's role
-      image: '/team/placeholder1.jpg', // Path to their image (replace all placeholder images with real images in public/team folder)
+      image: '/team/placeholder3.jpg', // Path to their image (replace all placeholder images with real images in public/team folder)
       description: 'Lorem ipsum dolor sit amet consectetur. Arcu in vestibulum ac lacerat commodo pellentesque.'
     },
     {
       name: 'Lorem ipsum dolor', // Will be replaced with real names later
       role: 'Role', // Add the team member's role
-      image: '/team/placeholder1.jpg', // Path to their image (replace all placeholder images with real images in public/team folder)
+      image: '/team/placeholder4.jpg', // Path to their image (replace all placeholder images with real images in public/team folder)
       description: 'Lorem ipsum dolor sit amet consectetur. Arcu in vestibulum ac lacerat commodo pellentesque.'
     },
     {
       name: 'Lorem ipsum dolor', // Will be replaced with real names later
       role: 'Role', // Add the team member's role
-      image: '/team/placeholder1.jpg', // Path to their image (replace all placeholder images with real images in public/team folder)
+      image: '/team/placeholder5.jpg', // Path to their image (replace all placeholder images with real images in public/team folder)
       description: 'Lorem ipsum dolor sit amet consectetur. Arcu in vestibulum ac lacerat commodo pellentesque.'
     },
     {
       name: 'Lorem ipsum dolor', // Will be replaced with real names later
       role: 'Role', // Add the team member's role
-      image: '/team/placeholder1.jpg', // Path to their image (replace all placeholder images with real images in public/team folder)
+      image: '/team/placeholder6.jpg', // Path to their image (replace all placeholder images with real images in public/team folder)
       description: 'Lorem ipsum dolor sit amet consectetur. Arcu in vestibulum ac lacerat commodo pellentesque.'
     }
   ]
@@ -143,13 +143,38 @@ export default function AboutPage() {
       </div>
 
         {/* Step 10: Add the Team section */}
-        <div>
+        <div className="mb-16">
           {/* 
           Create a grid of team member cards (TODO)
           - Use map() to iterate over the teamMembers array
           - Each card should show the image, name, role, and description
           - Remember to handle image loading with Next.js Image component
           */}
+          <h2 className="text-3xl font-bold text-blue-600 mb-8 text-center">
+            Meet the Team
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {teamMembers.map((member, index) => (
+              <div key={index} className="p-6 rounded-lg shadow-lg text-center bg-white border border-gray-200">
+                {/* Image */}
+                <div className="mb-4">
+                  <Image
+                    src={member.image}
+                    alt={`${member.name}'s photo`}
+                    width={150}
+                    height={150}
+                    className="rounded-full mx-auto"
+                  />
+                </div>
+                {/* Name */}
+                <h3 className="text-xl font-semibold mb-2">{member.name}</h3>
+                {/* Role */}
+                <p className="text-blue-600 font-medium mb-4">{member.role}</p>
+                {/* Description */}
+                <p className="text-gray-700">{member.description}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>
