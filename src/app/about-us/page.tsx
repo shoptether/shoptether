@@ -17,10 +17,10 @@ export default function AboutPage() {
       description: 'Sharon Kaufman is a passionate software engineer and designer dedicated to creating thoughtful, user-centric digital experiences. With expertise spanning front-end development, UI/UX design, and full-stack engineering, she combines technical skill with an eye for detail to craft intuitive and engaging applications. Sharon is also self-taught, bringing a unique blend of creativity and analytical thinking to each project. As a participant in the highly competitive Formation Fellowship, she has further honed her skills and gained advanced training in cutting-edge technologies. Sharon currently applies her expertise to contribute to open-source and startup projects, including collaborations that expand accessibility and usability in digital tools.'
     },
     {
-      name: 'Lorem ipsum dolor',
-      role: 'Role',
-      image: '/team/placeholder3.jpg',
-      description: 'Lorem ipsum dolor sit amet consectetur. Arcu in vestibulum ac lacerat commodo pellentesque.'
+      name: 'Isabel Masters',
+      role: 'UX Designer',
+      image: '/team/isabel-masters-profile.jpg',
+      description: 'Isabel Masters is a UX Designer and Researcher with a background in sociology and anthropology. She is currently completing a Master’s degree in psychology of the user experience at the Università Cattolica del Sacro Cuore. Along with being the UX Designer for ShopTether, she is also a UX Research intern for Ani. She has experience working and studying in several countries including Italy, Colombia, Canada, and the USA which has given her a unique understanding of inclusivity and accessibility in design.'
     },
     {
       name: 'Lorem ipsum dolor',
