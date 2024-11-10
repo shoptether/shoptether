@@ -101,7 +101,8 @@ export default function AboutPage() {
           <h1 className="text-4xl font-bold text-blue-600 mb-6">
             About Us
           </h1>
-          {/* Add your main description paragraph in p tage with info (TODO) */}
+          {/* Add your main description paragraph in p tags with info (done) */}
+          <p>ShopTether is an open-source integration platform for Shopify stores. We're building a bridge between Shopify and essential third-party services, making it easier for merchants to connect and manage their tech stack.</p>
         </div>
 
         {/* Step 8: Add the Mission section */}
