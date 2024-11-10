@@ -102,12 +102,21 @@ export default function AboutPage() {
             About Us
           </h1>
           {/* Add your main description paragraph in p tags with info (done) */}
-          <p>ShopTether is an open-source integration platform for Shopify stores. We're building a bridge between Shopify and essential third-party services, making it easier for merchants to connect and manage their tech stack.</p>
+          <p className="text-lg">ShopTether is an open-source integration platform for Shopify stores. We're building a bridge between Shopify and essential third-party services, making it easier for merchants to connect and manage their tech stack.</p>
         </div>
 
         {/* Step 8: Add the Mission section */}
         <div className="text-center mb-16">
-          {/* Add mission statement with highlighted words in blue in p tag, use spans as separators (TODO) */}
+          {/* Add mission statement with highlighted words in blue in p tag, use spans as separators (done) */}
+          <h2 className="text-3xl font-bold text-blue-600 mb-4">Our Mission</h2>
+          <p className="text-lg">
+            We believe in transparency, community-driven development, and making e-commerce tools more
+            <span className="text-blue-600 font-semibold"> accessible</span>. By being open source, we enable
+            <span className="text-blue-600 font-semibold"> community</span> contributions, build
+            <span className="text-blue-600 font-semibold"> trust</span> through code transparency, allow merchants to
+            <span className="text-blue-600 font-semibold"> customize</span> solutions, and create
+            <span className="text-blue-600 font-semibold"> learning</span> opportunities for developers, researchers, and marketers.
+          </p>
         </div>
 
         {/* Step 9: Add the Values section */}
