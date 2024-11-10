@@ -5,10 +5,10 @@ import Image from 'next/image'
 export default function AboutPage() {
   const teamMembers = [
     {
-      name: 'Lorem ipsum dolor',
-      role: 'Role',
-      image: '/team/placeholder1.jpg',
-      description: 'Lorem ipsum dolor sit amet consectetur. Arcu in vestibulum ac lacerat commodo pellentesque.'
+      name: 'Robleh Farah',
+      role: 'Founder & Lead Software Engineer, ShopTether | Former Co-founder, Groovy Health',
+      image: '/team/robleh-farah-profile.jpg',
+      description: 'Robleh Farah is a serial entrepreneur and software engineer specializing in e-commerce integrations and API product development. He currently serves as Founder and Lead Software Engineer at ShopTether, creating an open-source integration tool for Shopify that empowers merchants to seamlessly connect their stores with popular third-party applications, streamlining operations and enhancing efficiency. Previously, Robleh co-founded Groovy Health and served as a backend engineer at 1upHealth, where he built scalable healthcare APIs processing millions of daily requests. A graduate of the University of Pennsylvania, Robleh combines his technical expertise with experience from the World Health Organization and USAID to bring a unique perspective to product and engineering. His passion for open-source software and community-driven development has shaped ShopTether\'s mission to democratize e-commerce integration solutions for merchants worldwide.'
     },
     {
       name: 'Lorem ipsum dolor',
