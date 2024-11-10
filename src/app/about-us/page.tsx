@@ -108,7 +108,9 @@ export default function AboutPage() {
         {/* Step 8: Add the Mission section */}
         <div className="text-center mb-16">
           {/* Add mission statement with highlighted words in blue in p tag, use spans as separators (done) */}
-          <h2 className="text-3xl font-bold text-blue-600 mb-4">Our Mission</h2>
+          <h2 className="text-3xl font-bold text-blue-600 mb-4">
+            Our Mission
+          </h2>
           <p className="text-lg">
             We believe in transparency, community-driven development, and making e-commerce tools more
             <span className="text-blue-600 font-semibold"> accessible</span>. By being open source, we enable
@@ -121,12 +123,24 @@ export default function AboutPage() {
 
         {/* Step 9: Add the Values section */}
         <div className="mb-16">
-          {/* 
-          Create a grid of value cards (TODO)
-          - Use map() to iterate over the values array
-          - Each card should show the icon, title, and description
-          */}
-        </div>
+        {/* Create a grid of value cards (done) */}
+        <h2 className="text-3xl font-bold text-blue-600 mb-8 text-center">Our Values</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {values.map((value, index) => (
+            <div key={index} className="relative group">
+              <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-50 to-indigo-50 transform transition-transform group-hover:-translate-y-1"></div>
+              <div className="relative p-8 rounded-2xl bg-white border border-gray-200">
+                {/* Icon */}
+                <div className="w-12 h-12 mb-4 text-blue-600 text-4xl">{value.icon}</div>
+                {/* Title */}
+                <h3 className="text-xl font-semibold mb-2 text-zinc-900">{value.title}</h3>
+                {/* Description */}
+                <p className="text-gray-600">{value.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>  
+      </div>
 
         {/* Step 10: Add the Team section */}
         <div>
