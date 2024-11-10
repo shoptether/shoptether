@@ -11,10 +11,10 @@ export default function AboutPage() {
       description: 'Robleh Farah is a serial entrepreneur and software engineer specializing in e-commerce integrations and API product development. He currently serves as Founder and Lead Software Engineer at ShopTether, creating an open-source integration tool for Shopify that empowers merchants to seamlessly connect their stores with popular third-party applications, streamlining operations and enhancing efficiency. Previously, Robleh co-founded Groovy Health and served as a backend engineer at 1upHealth, where he built scalable healthcare APIs processing millions of daily requests. A graduate of the University of Pennsylvania, Robleh combines his technical expertise with experience from the World Health Organization and USAID to bring a unique perspective to product and engineering. His passion for open-source software and community-driven development has shaped ShopTether\'s mission to democratize e-commerce integration solutions for merchants worldwide.'
     },
     {
-      name: 'Lorem ipsum dolor',
-      role: 'Role',
-      image: '/team/placeholder2.jpg',
-      description: 'Lorem ipsum dolor sit amet consectetur. Arcu in vestibulum ac lacerat commodo pellentesque.'
+      name: 'Sharon Kaufman',
+      role: 'Software Engineer',
+      image: '/team/sharon-kaufman-profile.jpg',
+      description: 'Sharon Kaufman is a passionate software engineer and designer dedicated to creating thoughtful, user-centric digital experiences. With expertise spanning front-end development, UI/UX design, and full-stack engineering, she combines technical skill with an eye for detail to craft intuitive and engaging applications. Sharon is also self-taught, bringing a unique blend of creativity and analytical thinking to each project. As a participant in the highly competitive Formation Fellowship, she has further honed her skills and gained advanced training in cutting-edge technologies. Sharon currently applies her expertise to contribute to open-source and startup projects, including collaborations that expand accessibility and usability in digital tools.'
     },
     {
       name: 'Lorem ipsum dolor',
