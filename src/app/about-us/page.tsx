@@ -83,39 +83,56 @@ export default function AboutPage() {
           </div>
          </div>
         </div>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-blue-600 mb-4">
-              Our Mission
-            </h2>
-            <p className="max-w-2xl mx-auto text-xl text-gray-600 mb-10">
-              We believe in transparency, community-driven development, and making e-commerce tools more
-              <span className="text-blue-600 font-semibold"> accessible</span>. By being open source, we enable
-              <span className="text-blue-600 font-semibold"> community</span> contributions, build
-              <span className="text-blue-600 font-semibold"> trust</span> through code transparency, allow merchants to
-              <span className="text-blue-600 font-semibold"> customize</span> solutions, and create
-              <span className="text-blue-600 font-semibold"> learning</span> opportunities for developers, researchers, and marketers.
-            </p>
+        <div className="relative pt-16 pb-20">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8">
+            <div className="text-center mb-10">
+              <h2 className="text-3xl font-bold text-blue-600 mb-8">
+                Our Mission
+              </h2>
+              <p className="max-w-3xl mx-auto text-xl text-gray-600 mb-10">
+                We believe in transparency, community-driven development, and making e-commerce tools more
+                <span className="text-blue-600 font-semibold"> accessible</span>. By being open source, we enable
+                <span className="text-blue-600 font-semibold"> community</span> contributions, build
+                <span className="text-blue-600 font-semibold"> trust</span> through code transparency, allow merchants to
+                <span className="text-blue-600 font-semibold"> customize</span> solutions, and create
+                <span className="text-blue-600 font-semibold"> learning</span> opportunities for developers, researchers, and marketers.
+              </p>
+            </div>
           </div>
         </div>
           <div className="mb-16">
-            <h2 className="text-3xl font-bold text-blue-600 mb-8 text-center">
-              Our Values
-            </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-              {values.map((value, index) => (
-                <div key={index} className="relative group">
-                  <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-50 to-indigo-50 transform transition-transform group-hover:-translate-y-1"></div>
-                  <div className="relative p-8 rounded-2xl bg-white border border-gray-200">
-                    <div className="w-12 h-12 mb-4 text-blue-600 text-4xl">{value.icon}</div>
-                    <h3 className="text-xl font-semibold mb-2 text-zinc-900">{value.title}</h3>
-                    <p className="text-gray-600">{value.description}</p>
-                  </div>
+            <div className="relative pt-20 pb-24 bg-gradient-to-br from-indigo-50 via-white to-blue-50 py-12">
+              <h2 className="text-3xl font-bold text-blue-600 mb-10 text-center">
+                Our Values
+              </h2>
+              <div className="px-4 sm:px-6 lg:px-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                  {values.slice(0, 3).map((value, index) => (
+                    <div key={index} className="relative group">
+                      <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-50 to-indigo-50 transform transition-transform group-hover:-translate-y-1"></div>
+                      <div className="relative p-8 rounded-2xl bg-white border border-gray-200">
+                        <div className="w-12 h-12 mb-4 text-blue-600 text-4xl">{value.icon}</div>
+                        <h3 className="text-xl font-semibold mb-2 text-zinc-900">{value.title}</h3>
+                        <p className="text-gray-600">{value.description}</p>
+                      </div>
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </div>  
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8 max-w-3xl mx-auto">
+                  {values.slice(3).map((value, index) => (
+                    <div key={index + 3} className="relative group">
+                      <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-50 to-indigo-50 transform transition-transform group-hover:-translate-y-1"></div>
+                      <div className="relative p-8 rounded-2xl bg-white border border-gray-200">
+                        <div className="w-12 h-12 mb-4 text-blue-600 text-4xl">{value.icon}</div>
+                        <h3 className="text-xl font-semibold mb-2 text-zinc-900">{value.title}</h3>
+                        <p className="text-gray-600">{value.description}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>  
+            </div>
           </div>
-
           <div className="mb-16">
             <h2 className="text-3xl font-bold text-blue-600 mb-8 text-center">
               Meet the Team
