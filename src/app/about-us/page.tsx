@@ -137,6 +137,7 @@ export default function AboutPage() {
             <h2 className="text-3xl font-bold text-blue-600 mb-8 text-center">
               Meet the Team
             </h2>
+            <div className="px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
               {teamMembers.map((member, index) => (
                 <div key={index} className="p-6 rounded-lg shadow-lg text-center bg-white border border-gray-200">
@@ -156,6 +157,7 @@ export default function AboutPage() {
                 </div>
               ))}
             </div>
+           </div>
           </div>
     </div>
   )
