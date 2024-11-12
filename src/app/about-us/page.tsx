@@ -7,7 +7,7 @@ export default function AboutPage() {
   const teamMembers = [
     {
       name: 'Robleh Farah',
-      role: 'Founder & Lead Software Engineer, ShopTether | Former Co-founder, Groovy Health',
+      role: 'Founder & Lead Software Engineer',
       image: '/team/robleh-farah-profile.jpg',
       description: 'Robleh Farah is a serial entrepreneur and software engineer specializing in e-commerce integrations and API product development. He currently serves as Founder and Lead Software Engineer at ShopTether, creating an open-source integration tool for Shopify that empowers merchants to seamlessly connect their stores with popular third-party applications, streamlining operations and enhancing efficiency. Previously, Robleh co-founded Groovy Health and served as a backend engineer at 1upHealth, where he built scalable healthcare APIs processing millions of daily requests. A graduate of the University of Pennsylvania, Robleh combines his technical expertise with experience from the World Health Organization and USAID to bring a unique perspective to product and engineering. His passion for open-source software and community-driven development has shaped ShopTether\'s mission to democratize e-commerce integration solutions for merchants worldwide.'
     },
@@ -24,22 +24,22 @@ export default function AboutPage() {
       description: 'Isabel Masters is a UX Designer and Researcher with a background in sociology and anthropology. She is currently completing a Master’s degree in psychology of the user experience at the Università Cattolica del Sacro Cuore. Along with being the UX Designer for ShopTether, she is also a UX Research intern for Ani. She has experience working and studying in several countries including Italy, Colombia, Canada, and the USA which has given her a unique understanding of inclusivity and accessibility in design.'
     },
     {
+      name: 'Zuriya Dyusebaeva',
+      role: 'UX Designer',
+      image: '/team/placeholder6.jpg',
+      description: 'Lorem ipsum dolor sit amet consectetur. Arcu in vestibulum ac lacerat commodo pellentesque.'
+    },
+    {
       name: 'Nilakshi Sahai',
       role: 'UX Researcher',
       image: '/team/nilakshi-sahai-profile.jpg',
       description: 'Nilakshi loves exploring what makes technology truly enjoyable to use. As a UX Researcher at ShopTether, she brings this curiosity to e-commerce tools, finding ways to make them more intuitive and user-friendly. For her research on Ludic Engagement, she designed an interactive device to study how people naturally engage with technology in playful, non-task-oriented ways. Armed with a Master\'s in Human-Computer Interaction and experience as a Full-Stack Developer at IBM, Nilakshi knows both the technical and human sides of building great products. She\'s put this knowledge to work leading design teams at Hack for LA and developing enterprise solutions at IBM that served thousands of employees. Whether she\'s researching user behavior, crafting interfaces, or building interactive devices, Nilakshi is always looking for ways to make technology more engaging and maybe even a little fun.'
     },
     {
-      name: 'Lorem ipsum dolor',
-      role: 'Role',
-      image: '/team/placeholder5.jpg',
-      description: 'Lorem ipsum dolor sit amet consectetur. Arcu in vestibulum ac lacerat commodo pellentesque.'
-    },
-    {
-      name: 'Lorem ipsum dolor',
-      role: 'Role',
-      image: '/team/placeholder6.jpg',
-      description: 'Lorem ipsum dolor sit amet consectetur. Arcu in vestibulum ac lacerat commodo pellentesque.'
+      name: 'Megan Johnson',
+      role: 'Marketing Associate',
+      image: '/team/megan-johnson-profile.jpg',
+      description: 'Megan is an experienced entrepreneur and marketing professional with a diverse background spanning e-commerce, logistics, and startup ecosystems. Holding a law degree, Megan brings a unique combination of legal insight and business acumen to her entrepreneurial ventures. She has worked with multiple YC-backed startups, gaining extensive experience in content and product marketing across various industries.In addition to her marketing expertise, Megan has a strong understanding e-commerce and has run global e-commerce businesses on Shopify.'
     }
   ]
 
