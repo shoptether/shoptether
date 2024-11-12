@@ -23,10 +23,10 @@ export default function AboutPage() {
       description: 'Isabel Masters is a UX Designer and Researcher with a background in sociology and anthropology. She is currently completing a Master’s degree in psychology of the user experience at the Università Cattolica del Sacro Cuore. Along with being the UX Designer for ShopTether, she is also a UX Research intern for Ani. She has experience working and studying in several countries including Italy, Colombia, Canada, and the USA which has given her a unique understanding of inclusivity and accessibility in design.'
     },
     {
-      name: 'Lorem ipsum dolor',
-      role: 'Role',
-      image: '/team/placeholder4.jpg',
-      description: 'Lorem ipsum dolor sit amet consectetur. Arcu in vestibulum ac lacerat commodo pellentesque.'
+      name: 'Nilakshi Sahai',
+      role: 'UX Researcher',
+      image: '/team/nilakshi-sahai-profile.jpg',
+      description: 'Nilakshi loves exploring what makes technology truly enjoyable to use. As a UX Researcher at ShopTether, she brings this curiosity to e-commerce tools, finding ways to make them more intuitive and user-friendly. For her research on Ludic Engagement, she designed an interactive device to study how people naturally engage with technology in playful, non-task-oriented ways. Armed with a Master\'s in Human-Computer Interaction and experience as a Full-Stack Developer at IBM, Nilakshi knows both the technical and human sides of building great products. She\'s put this knowledge to work leading design teams at Hack for LA and developing enterprise solutions at IBM that served thousands of employees. Whether she\'s researching user behavior, crafting interfaces, or building interactive devices, Nilakshi is always looking for ways to make technology more engaging and maybe even a little fun.'
     },
     {
       name: 'Lorem ipsum dolor',
