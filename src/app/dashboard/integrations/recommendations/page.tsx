@@ -1,25 +1,34 @@
 'use client'
 
-import { useEffect } from 'react'
+import { useEffect, useCallback } from 'react'
 import { DashboardShell } from '@/components/dashboard/DashboardShell'
 import { ConfigPanel } from '@/integrations/recommendations/components/ConfigPanel'
 import { MetricsDisplay } from '@/integrations/recommendations/components/MetricsDisplay'
 import { RecommendationPreview } from '@/integrations/recommendations/components/RecommendationPreview'
 import { useState } from 'react'
-import { RecommendationConfig } from '@/integrations/recommendations/types/recommendation.types'
+import { RecommendationConfig, ShopifyProduct } from '@/integrations/recommendations/types/recommendation.types'
 import { Card } from '@/components/ui/Card'
 import toast from 'react-hot-toast'
 
 export default function RecommendationsPage() {
   const [config, setConfig] = useState<RecommendationConfig | null>(null)
   const [metrics, setMetrics] = useState({ impressions: 0, clicks: 0, conversions: 0 })
-  const [products, setProducts] = useState([])
+  const [products] = useState<ShopifyProduct[]>([])
   const [isLoading, setIsLoading] = useState(false)
 
-  useEffect(() => {
-    fetchConfig()
-    fetchMetrics()
-  }, [])
+  const fetchMetrics = useCallback(async () => {
+    if (!config?.id) return
+
+    try {
+      const response = await fetch(`/api/integrations/recommendations/metrics?configId=${config.id}`)
+      if (response.ok) {
+        const data = await response.json()
+        setMetrics(data)
+      }
+    } catch (error) {
+      console.error('Failed to fetch metrics:', error)
+    }
+  }, [config?.id])
 
   const fetchConfig = async () => {
     try {
@@ -34,19 +43,10 @@ export default function RecommendationsPage() {
     }
   }
 
-  const fetchMetrics = async () => {
-    if (!config?.id) return
-
-    try {
-      const response = await fetch(`/api/integrations/recommendations/metrics?configId=${config.id}`)
-      if (response.ok) {
-        const data = await response.json()
-        setMetrics(data)
-      }
-    } catch (error) {
-      console.error('Failed to fetch metrics:', error)
-    }
-  }
+  useEffect(() => {
+    fetchConfig()
+    fetchMetrics()
+  }, [fetchMetrics])
 
   const handleSaveConfig = async (newConfig: RecommendationConfig) => {
     setIsLoading(true)

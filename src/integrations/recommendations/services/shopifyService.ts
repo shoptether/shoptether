@@ -1,5 +1,21 @@
 import { ShopifyProduct } from '../types/recommendation.types'
 
+interface ShopifyTheme {
+  id: string
+  role: string
+  name: string
+}
+
+interface ShopifyProductResponse {
+  id: string
+  title: string
+  handle: string
+  variants: Array<{ price: string }>
+  images: Array<{ src: string }>
+  tags: string | string[]
+  product_type: string
+}
+
 export class ShopifyService {
   constructor(
     private readonly shopDomain: string,
@@ -23,7 +39,7 @@ export class ShopifyService {
       }
 
       const data = await response.json()
-      return data.products.map((product: any) => ({
+      return data.products.map((product: ShopifyProductResponse) => ({
         id: product.id,
         title: product.title,
         handle: product.handle,
@@ -40,7 +56,6 @@ export class ShopifyService {
 
   async updateThemeFiles(snippetContent: string, scriptContent: string): Promise<boolean> {
     try {
-      // Get main theme ID
       const themesResponse = await fetch(
         `https://${this.shopDomain}/admin/api/2024-01/themes.json`,
         {
@@ -51,18 +66,13 @@ export class ShopifyService {
         }
       )
 
-      if (!themesResponse.ok) {
-        throw new Error('Failed to fetch themes')
-      }
-
       const { themes } = await themesResponse.json()
-      const mainTheme = themes.find((t: any) => t.role === 'main')
+      const mainTheme = themes.find((t: ShopifyTheme) => t.role === 'main')
 
       if (!mainTheme) {
         throw new Error('No main theme found')
       }
 
-      // Create/update snippet file
       const snippetResponse = await fetch(
         `https://${this.shopDomain}/admin/api/2024-01/themes/${mainTheme.id}/assets.json`,
         {
@@ -84,7 +94,6 @@ export class ShopifyService {
         throw new Error('Failed to update snippet file')
       }
 
-      // Create/update JavaScript file
       const scriptResponse = await fetch(
         `https://${this.shopDomain}/admin/api/2024-01/themes/${mainTheme.id}/assets.json`,
         {

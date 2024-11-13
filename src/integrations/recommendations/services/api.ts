@@ -2,7 +2,7 @@ import { toast } from 'react-hot-toast'
 
 interface ApiOptions {
   method?: 'GET' | 'POST' | 'PUT' | 'DELETE'
-  body?: any
+  body?: Record<string, unknown>
   headers?: Record<string, string>
 }
 
