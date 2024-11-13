@@ -9,6 +9,7 @@ const statusColors: Record<IntegrationStatus, string> = {
   disconnected: 'gray',
   pending: 'yellow',
   error: 'red',
+  available: 'blue'
 }
 
 export function IntegrationCard({ integration, onConnect, onDisconnect }: IntegrationProps) {
