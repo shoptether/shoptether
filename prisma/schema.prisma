@@ -16,6 +16,34 @@ model ShopifyConnection {
   status      String   @default("ACTIVE")
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+  recommendations RecommendationConfig?
 
   @@unique([userId, shopUrl])
+}
+
+model RecommendationConfig {
+  id              String   @id @default(cuid())
+  userId          String
+  enabled         Boolean  @default(false)
+  productCount    Int      @default(4)
+  algorithm       String   @default("similar")
+  displayLocation String   @default("product_page")
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  shopifyConnection ShopifyConnection @relation(fields: [shopifyConnectionId], references: [id])
+  shopifyConnectionId String @unique
+  metrics         RecommendationMetrics[]
+}
+
+model RecommendationMetrics {
+  id                  String   @id @default(cuid())
+  configId            String
+  impressions         Int      @default(0)
+  clicks              Int      @default(0)
+  conversions         Int      @default(0)
+  date                DateTime @default(now())
+  config              RecommendationConfig @relation(fields: [configId], references: [id])
+
+  @@unique([configId, date])
+  @@index([date])
 }

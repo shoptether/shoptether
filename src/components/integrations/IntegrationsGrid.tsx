@@ -15,6 +15,12 @@ export function IntegrationsGrid() {
       description: 'Connect your Shopify store to sync products and orders',
       status: 'disconnected',
     },
+    {
+      id: 'recommendations',
+      name: 'AI Product Recommendations',
+      description: 'Boost sales with AI-powered product recommendations',
+      status: 'available',
+    }
   ])
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [selectedIntegration, setSelectedIntegration] = useState<string | null>(null)
@@ -32,7 +38,8 @@ export function IntegrationsGrid() {
       setIntegrations(current =>
         current.map(integration => ({
           ...integration,
-          status: data[integration.id] || 'disconnected'
+          status: data[integration.id] || 
+            (integration.id === 'recommendations' ? 'available' : 'disconnected')
         }))
       )
     } catch (error) {
@@ -41,8 +48,13 @@ export function IntegrationsGrid() {
   }
 
   const handleConnect = async (id: string) => {
-    setSelectedIntegration(id)
-    setIsModalOpen(true)
+    if (id === 'shopify') {
+      setSelectedIntegration(id)
+      setIsModalOpen(true)
+    } else if (id === 'recommendations') {
+      // Navigate to recommendations configuration page
+      window.location.href = '/dashboard/integrations/recommendations'
+    }
   }
 
   const handleDisconnect = async (id: string) => {
