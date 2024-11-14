@@ -1,37 +1,37 @@
 import { FeatureCard } from './FeatureCard'
 import {
-  PuzzlePieceIcon,
-  CommandLineIcon,
-  CubeTransparentIcon,
-  UserGroupIcon,
-  ShieldCheckIcon,
+  SparklesIcon,
+  ChartBarIcon,
+  CubeIcon,
+  ShoppingCartIcon,
+  DocumentTextIcon,
 } from '@heroicons/react/24/outline'
 
 const features = [
   {
-    title: 'Pre-Built Connectors',
-    description: 'Ready-to-use modules for popular services like Mailchimp, Salesforce, and QuickBooks.',
-    icon: <PuzzlePieceIcon className="w-8 h-8" />,
+    title: 'AI Product Recommendations',
+    description: 'Boost sales with personalized product suggestions powered by advanced AI algorithms.',
+    icon: <SparklesIcon className="w-8 h-8" />,
   },
   {
-    title: 'User Friendly',
-    description: 'No coding required. Connect your business tools through our dashboard interface.',
-    icon: <CommandLineIcon className="w-8 h-8" />,
+    title: 'Smart Inventory Management',
+    description: 'Predict stock needs and optimize inventory levels with AI-driven analytics.',
+    icon: <ChartBarIcon className="w-8 h-8" />,
   },
   {
-    title: 'Open Source',
-    description: 'Free to use, modify, and distribute worldwide. Community-driven development.',
-    icon: <CubeTransparentIcon className="w-8 h-8" />,
+    title: 'Visual Merchandising AI',
+    description: 'Optimize your store layout and product placement using AI insights.',
+    icon: <CubeIcon className="w-8 h-8" />,
   },
   {
-    title: 'Community Powered',
-    description: 'Join a growing community of developers building the future of Shopify integrations.',
-    icon: <UserGroupIcon className="w-8 h-8" />,
+    title: 'AI Content Generation',
+    description: 'Create engaging product descriptions and content with AI assistance.',
+    icon: <DocumentTextIcon className="w-8 h-8" />,
   },
   {
-    title: 'Shopify Focused',
-    description: 'Designed specifically for Shopify stores, with built-in best practices.',
-    icon: <ShieldCheckIcon className="w-8 h-8" />,
+    title: 'Conversion Optimization',
+    description: 'Improve store performance with AI-powered insights and suggestions.',
+    icon: <ShoppingCartIcon className="w-8 h-8" />,
   },
 ]
 
@@ -41,10 +41,10 @@ export function Features() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">
-            Simplify Your Shopify Integrations
+            AI-Powered Services for Your Store
           </h2>
           <p className="mt-4 text-xl text-gray-600">
-            Everything you need to connect your Shopify store with essential services
+            Enhance every aspect of your Shopify store with cutting-edge AI technology
           </p>
         </div>
         

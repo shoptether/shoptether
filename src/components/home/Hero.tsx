@@ -17,10 +17,10 @@ export function Hero() {
       <div className="relative pt-32 pb-20 sm:pt-40 sm:pb-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl md:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 mb-6 leading-tight md:leading-tight">
-            Open-Source Integration for Shopify
+            Revolutionize Your Shopify Store with AI Powered Services
           </h1>
           <p className="max-w-2xl mx-auto text-xl text-gray-600 mb-10">
-            Connect your Shopify store to popular services like Mailchimp, Salesforce, and QuickBooks—without the complexity. Free and open source forever.
+            Transform your e-commerce business with our suite of AI-powered services. From smart product recommendations to automated inventory management—all without writing code.
           </p>
           <div className="flex justify-center gap-4">
             <Link href="/sign-in">

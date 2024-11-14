@@ -8,8 +8,8 @@ import './globals.css'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'ShopTether - Shopify Integration Tool',
-  description: 'Connect your Shopify store with essential services and streamline your operations.',
+  title: 'ShopTether - AI-Powered Shopify Services',
+  description: 'Enhance your Shopify store with cutting-edge AI services for personalization, automation, and optimization.',
   icons: {
     icon: [
       {
