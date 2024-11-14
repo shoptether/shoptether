@@ -17,7 +17,7 @@ export default function Home() {
                 ShopTether
               </h3>
               <p className="text-gray-600 text-sm">
-                Building the future of e-commerce integration.
+               Empowering e-commerce with AI innovation.
               </p>
             </div>
             <div className="w-full max-w-xs">

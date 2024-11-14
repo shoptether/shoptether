@@ -1,7 +1,6 @@
 'use client'
 
 import { useEffect, useCallback } from 'react'
-import { DashboardShell } from '@/components/dashboard/DashboardShell'
 import { ConfigPanel } from '@/integrations/recommendations/components/ConfigPanel'
 import { MetricsDisplay } from '@/integrations/recommendations/components/MetricsDisplay'
 import { RecommendationPreview } from '@/integrations/recommendations/components/RecommendationPreview'
@@ -75,34 +74,32 @@ export default function RecommendationsPage() {
   }
 
   return (
-    <DashboardShell>
-      <div className="space-y-6">
-        <div>
-          <h1 className="text-3xl font-bold tracking-tight">
-            AI Product Recommendations
-          </h1>
-          <p className="text-gray-500">
-            Configure and manage your product recommendations.
-          </p>
-        </div>
+    <div className="space-y-6">
+      <div>
+        <h1 className="text-3xl font-bold tracking-tight">
+          AI Product Recommendations
+        </h1>
+        <p className="text-gray-500">
+          Configure and manage your product recommendations.
+        </p>
+      </div>
 
-        <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
-          <Card className="p-6">
-            <ConfigPanel 
-              initialConfig={config}
-              onSave={handleSaveConfig}
-              isLoading={isLoading}
-            />
-          </Card>
-          <Card className="p-6">
-            <MetricsDisplay metrics={metrics} />
-          </Card>
-        </div>
-
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
         <Card className="p-6">
-          <RecommendationPreview products={products} />
+          <ConfigPanel 
+            initialConfig={config}
+            onSave={handleSaveConfig}
+            isLoading={isLoading}
+          />
+        </Card>
+        <Card className="p-6">
+          <MetricsDisplay metrics={metrics} />
         </Card>
       </div>
-    </DashboardShell>
+
+      <Card className="p-6">
+        <RecommendationPreview products={products} />
+      </Card>
+    </div>
   )
 }
