@@ -18,6 +18,14 @@ export default function AIServicesPage() {
           </p>
           <div className="bg-blue-50 p-4 rounded-lg">
             <p className="text-sm text-blue-700">
+              Current Services:
+            </p>
+            <ul className="list-disc list-inside text-sm text-blue-600 mt-2">
+              <li>AI Product Recommendations</li>
+            </ul>
+          </div>
+          <div className="bg-blue-50 p-4 rounded-lg">
+            <p className="text-sm text-blue-700">
               Coming Soon:
             </p>
             <ul className="list-disc list-inside text-sm text-blue-600 mt-2">
