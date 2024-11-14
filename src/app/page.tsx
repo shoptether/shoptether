@@ -62,12 +62,12 @@ export default function Home() {
               </h3>
               <ul className="space-y-2 text-sm text-gray-600">
                 <li>
-                  <Link href="/coming-soon" className="hover:text-gray-900">
+                  <Link href="/privacy" className="hover:text-gray-900">
                     Privacy
                   </Link>
                 </li>
                 <li>
-                  <Link href="/coming-soon" className="hover:text-gray-900">
+                  <Link href="/terms" className="hover:text-gray-900">
                     Terms
                   </Link>
                 </li>
