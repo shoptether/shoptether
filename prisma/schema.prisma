@@ -33,8 +33,10 @@ model RecommendationConfig {
   shopifyConnection ShopifyConnection @relation(fields: [shopifyConnectionId], references: [id])
   shopifyConnectionId String @unique
   metrics         RecommendationMetrics[]
+  detailedMetrics RecommendationMetric[]    
 }
 
+// Existing aggregated metrics model
 model RecommendationMetrics {
   id                  String   @id @default(cuid())
   configId            String
@@ -46,4 +48,19 @@ model RecommendationMetrics {
 
   @@unique([configId, date])
   @@index([date])
+}
+
+// New detailed events model
+model RecommendationMetric {
+  id          String   @id @default(cuid())
+  type        String   // 'impression', 'click', or 'conversion'
+  configId    String
+  productId   String?
+  userId      String
+  timestamp   DateTime @default(now())
+  config      RecommendationConfig @relation(fields: [configId], references: [id])
+
+  @@index([configId])
+  @@index([timestamp])
+  @@index([type])
 }
