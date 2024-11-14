@@ -10,7 +10,7 @@ import {
 const features = [
   {
     title: 'AI Product Recommendations',
-    description: 'Boost sales with personalized product suggestions powered by advanced AI algorithms.',
+    description: 'Boost sales with personalized product suggestions powered by AI algorithms.',
     icon: <SparklesIcon className="w-8 h-8" />,
   },
   {
