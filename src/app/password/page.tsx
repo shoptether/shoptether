@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { LockClosedIcon } from '@heroicons/react/24/solid'
+import Cookies from 'js-cookie'
 
 export default function PasswordPage() {
   const [password, setPassword] = useState('')
@@ -11,7 +12,7 @@ export default function PasswordPage() {
 
   useEffect(() => {
     // Check if already authenticated
-    const isAuthenticated = localStorage.getItem('siteAuthenticated')
+    const isAuthenticated = Cookies.get('siteAuthenticated')
     if (isAuthenticated === 'true') {
       router.push('/')
     }
@@ -20,7 +21,10 @@ export default function PasswordPage() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     if (password === 'ShopifyAIx7!') {
-      localStorage.setItem('siteAuthenticated', 'true')
+      Cookies.set('siteAuthenticated', 'true', { 
+        expires: 7,
+        path: '/'
+      })
       router.push('/')
     } else {
       setError('Incorrect password')
