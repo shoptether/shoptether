@@ -1,7 +1,10 @@
+'use client'
+
 import { ClerkProvider } from '@clerk/nextjs'
 import { Inter } from 'next/font/google'
 import { Navbar } from '@/components/layout/Navbar'
 import { Toaster } from "react-hot-toast"
+import { usePathname } from 'next/navigation'
 import type { Metadata } from "next"
 import './globals.css'
 
@@ -34,11 +37,14 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  const pathname = usePathname()
+  const isPasswordPage = pathname === '/password'
+
   return (
     <ClerkProvider>
       <html lang="en">
         <body className={inter.className}>
-          <Navbar />
+          {!isPasswordPage && <Navbar />}
           {children}
           <Toaster />
         </body>
