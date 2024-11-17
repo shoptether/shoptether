@@ -8,6 +8,7 @@ import Cookies from 'js-cookie'
 export default function PasswordPage() {
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
+  const [countdown, setCountdown] = useState('')
   const router = useRouter()
 
   useEffect(() => {
@@ -16,6 +17,22 @@ export default function PasswordPage() {
     if (isAuthenticated === 'true') {
       router.push('/')
     }
+
+    // Countdown timer
+    const timer = setInterval(() => {
+      const launchDate = new Date('2024-12-18T00:00:00')
+      const now = new Date()
+      const difference = launchDate.getTime() - now.getTime()
+
+      const days = Math.floor(difference / (1000 * 60 * 60 * 24))
+      const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
+      const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60))
+      const seconds = Math.floor((difference % (1000 * 60)) / 1000)
+
+      setCountdown(`${days}d ${hours}h ${minutes}m ${seconds}s`)
+    }, 1000)
+
+    return () => clearInterval(timer)
   }, [router])
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -43,6 +60,17 @@ export default function PasswordPage() {
           <p className="mt-2 text-sm text-gray-600">
             Enter password to continue
           </p>
+          <div className="mt-4 space-y-2">
+            <p className="text-sm font-medium text-indigo-600">
+              Coming to Shopify App Store
+            </p>
+            <div className="text-2xl font-bold text-gray-900 font-mono">
+              {countdown}
+            </div>
+            <p className="text-xs text-gray-500">
+              December 18th, 2024
+            </p>
+          </div>
         </div>
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
           <div>
