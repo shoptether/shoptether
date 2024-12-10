@@ -3,10 +3,7 @@ import { prisma } from '@/lib/prisma'
 import { ShopifyClient } from '@/lib/shopify'
 import { NextRequest } from 'next/server'
 
-export async function GET(
-  req: NextRequest,
-  { params }: { params: { storeId: string } }
-) {
+export async function GET(req: NextRequest) {
   try {
     const { userId } = await auth()
     if (!userId) {
@@ -17,10 +14,11 @@ export async function GET(
     }
 
     const searchParams = req.nextUrl.searchParams
+    const storeId = searchParams.get('storeId')
     const dataType = searchParams.get('type')
 
-    if (!dataType) {
-      return new Response(JSON.stringify({ error: 'Data type is required' }), { 
+    if (!storeId || !dataType) {
+      return new Response(JSON.stringify({ error: 'Store ID and data type are required' }), { 
         status: 400,
         headers: { 'Content-Type': 'application/json' }
       })
@@ -28,7 +26,7 @@ export async function GET(
 
     const shopifyConnection = await prisma.shopifyConnection.findFirst({
       where: {
-        id: params.storeId,
+        id: storeId,
         userId,
         status: 'ACTIVE'
       }

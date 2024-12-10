@@ -86,22 +86,27 @@ export default function StoreDataPage() {
     }
   }
 
-  const downloadCsv = async (dataType: string) => {
+  const downloadCsv = async (type: string) => {
     try {
-      const response = await fetch(`/api/shopify/store-data/${selectedStoreId}/export?type=${dataType}`)
-      if (response.ok) {
-        const blob = await response.blob()
-        const url = window.URL.createObjectURL(blob)
-        const a = document.createElement('a')
-        a.href = url
-        a.download = `${dataType}-${new Date().toISOString()}.csv`
-        document.body.appendChild(a)
-        a.click()
-        window.URL.revokeObjectURL(url)
-        document.body.removeChild(a)
-      }
+      const response = await fetch(
+        `/api/shopify/export?storeId=${selectedStoreId}&type=${type}`,
+        { method: 'GET' }
+      )
+      
+      if (!response.ok) throw new Error('Export failed')
+      
+      const blob = await response.blob()
+      const url = window.URL.createObjectURL(blob)
+      const a = document.createElement('a')
+      a.href = url
+      a.download = `${type}-${new Date().toISOString()}.csv`
+      document.body.appendChild(a)
+      a.click()
+      window.URL.revokeObjectURL(url)
+      document.body.removeChild(a)
     } catch (error) {
-      console.error('Error downloading CSV:', error)
+      console.error('Download error:', error)
+      // Handle error (show toast, etc.)
     }
   }
 
