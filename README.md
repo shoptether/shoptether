@@ -6,11 +6,27 @@
 
 **ShopTether**: 
 
-Unlock seamless connectivity for your Shopify store with ShopTether, the open-source integration tool designed for merchants looking to simplify their app ecosystem. Whether you want to connect with popular CRMs, email marketing platforms, or accounting tools, ShopTether makes it easy—no extensive coding required!
+Transform your Shopify store's data into actionable insights with ShopTether, an AI-powered analytics tool that helps merchants understand and optimize their business. Get instant, intelligent analysis of your store's performance through natural conversation—no data expertise required!
 
 Key Features:
-- **User-Friendly Interface**: Set up and manage integrations effortlessly with our intuitive dashboard.
-- **Pre-Built Connectors**: Connect to widely-used applications like Mailchimp, Salesforce, QuickBooks, and more with ready-to-use modules.
-- **Open Source**: Join a community-driven project that encourages collaboration and innovation. Contribute, customize, and enhance your integrations as needed.
+- **AI Store Analyst**: Chat with an AI that understands your store's data and provides detailed insights
+- **Real-Time Analysis**: Get instant answers about your products, sales, and customer trends
+- **Conversation History**: Save and reference previous analyses for tracking insights over time
+- **User-Friendly Interface**: Ask questions in plain English and receive clear, actionable insights
+- **Cost-Effective**: Powered by GPT-3.5 for efficient, affordable analysis
 
-Empower your Shopify store by integrating essential services and streamlining your operations. With ShopTether, focus on what matters most—growing your business!
+Perfect for:
+- Store owners seeking quick insights about their business performance
+- Marketers looking to understand customer behavior
+- Teams needing quick access to store analytics
+- Anyone who wants to make data-driven decisions without complex analytics tools
+
+Built with:
+- Next.js 14
+- OpenAI GPT-3.5
+- Shopify Admin API
+- PostgreSQL
+- Prisma
+- Clerk Authentication
+
+Get started by connecting your Shopify store and asking your first question!
