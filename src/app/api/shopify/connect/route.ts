@@ -1,4 +1,3 @@
-import { prisma } from '@/lib/prisma'
 import { auth } from '@clerk/nextjs/server'
 
 export async function POST(req: Request) {
@@ -18,52 +17,35 @@ export async function POST(req: Request) {
     })
 
     if (!shopResponse.ok) {
-      return new Response('Invalid credentials', { status: 400 })
+      return new Response(JSON.stringify({ 
+        error: 'Invalid credentials'
+      }), { 
+        status: 400,
+        headers: { 'Content-Type': 'application/json' }
+      })
     }
 
     const shopData = await shopResponse.json()
 
-    // Store the connection details securely
-    await prisma.shopifyConnection.upsert({
-      where: {
-        userId_shopUrl: {
-          userId,
-          shopUrl: shopifyDomain
-        }
-      },
-      update: {
-        accessToken,
-        shopName: shopData.shop.name,
-        shopId: shopData.shop.id.toString(),
-      },
-      create: {
-        userId,
-        shopUrl: shopifyDomain,
-        accessToken,
-        shopName: shopData.shop.name,
-        shopId: shopData.shop.id.toString(),
-      },
-    })
-
+    // For now, just return success without saving to database
+    // Until we set up the database, we can store in memory or localStorage
     return new Response(JSON.stringify({ 
       success: true, 
-      shop: shopData.shop 
+      shop: shopData.shop,
+      message: 'Connection verified (Note: Database storage not yet implemented)'
     }), { 
       status: 200,
-      headers: {
-        'Content-Type': 'application/json',
-      }
+      headers: { 'Content-Type': 'application/json' }
     })
+
   } catch (error) {
-    console.error('Error connecting store:', error)
+    console.error('Detailed connection error:', error)
     return new Response(JSON.stringify({ 
-      success: false, 
-      error: 'Failed to connect to store' 
+      error: 'Failed to connect to store',
+      details: error instanceof Error ? error.message : 'Unknown error'
     }), { 
       status: 500,
-      headers: {
-        'Content-Type': 'application/json',
-      }
+      headers: { 'Content-Type': 'application/json' }
     })
   }
 }

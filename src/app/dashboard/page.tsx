@@ -36,19 +36,25 @@ export default function DashboardPage() {
   const handleConnect = async () => {
     if (await testConnection(domain, token)) {
       // If connection successful, save the credentials
-      const response = await fetch('/api/shopify/connect', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ shopifyDomain: domain, accessToken: token }),
-      })
-      
-      if (response.ok) {
-        setStatus('Store connected successfully!')
-        setIsConnected(true)
-      } else {
-        setStatus('Failed to save connection')
+      try {
+        const response = await fetch('/api/shopify/connect', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ shopifyDomain: domain, accessToken: token }),
+        })
+        
+        const data = await response.json()
+        
+        if (response.ok) {
+          setStatus('Store connected successfully! ' + (data.message || ''))
+          setIsConnected(true)
+        } else {
+          setStatus('Failed to save connection: ' + (data.error || 'Unknown error'))
+        }
+      } catch (error) {
+        setStatus('Connection error: ' + (error instanceof Error ? error.message : 'Unknown error'))
       }
     }
   }
