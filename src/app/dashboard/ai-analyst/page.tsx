@@ -109,6 +109,11 @@ export default function AIAnalystPage() {
     }
   }
 
+  const handleStoreChange = (value: string) => {
+    setSelectedStoreId(value)
+    setMessages([])
+  }
+
   return (
     <div className="space-y-6">
       {/* Store Selection and Data Availability */}
@@ -121,7 +126,7 @@ export default function AIAnalystPage() {
             </div>
             <Select 
               value={selectedStoreId} 
-              onValueChange={setSelectedStoreId}
+              onValueChange={handleStoreChange}
               className="max-w-xs"
             >
               {stores.map((store) => (
