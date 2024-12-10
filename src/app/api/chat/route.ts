@@ -21,6 +21,7 @@ export async function POST(req: Request) {
     }
 
     const { message, sessionId, storeId } = await req.json()
+    console.log('Received request:', { message, sessionId, storeId })
 
     if (!storeId) {
       return new Response(JSON.stringify({ error: 'Store ID is required' }), { 
@@ -45,6 +46,8 @@ export async function POST(req: Request) {
       })
     }
 
+    console.log('Found store:', shopifyConnection)
+
     // Initialize Shopify client
     const shopify = new ShopifyClient({
       shopUrl: shopifyConnection.shopUrl,
@@ -53,6 +56,7 @@ export async function POST(req: Request) {
 
     // Fetch relevant Shopify data
     const shopifyData = await shopify.getDataForQuery(message)
+    console.log('Retrieved store data:', shopifyData)
 
     // Get or create chat session
     let session = sessionId ? 
@@ -62,7 +66,7 @@ export async function POST(req: Request) {
           userId,
           shopUrl: shopifyConnection.shopUrl,
           title: 'New Analysis',
-          storeId // Add storeId to session
+          storeId
         }
       })
 
@@ -77,7 +81,7 @@ export async function POST(req: Request) {
     await prisma.chatMessage.create({
       data: {
         sessionId: session.id,
-        storeId, // Add storeId to message
+        storeId,
         role: 'user',
         content: message,
         userId
@@ -85,11 +89,15 @@ export async function POST(req: Request) {
     })
 
     // Prepare context for AI with store-specific information
-    const context = `You are analyzing data for the Shopify store "${shopifyConnection.shopUrl}". 
-Here's the relevant data:
+    const context = `You are a helpful Shopify store analyst. You're analyzing data for the store "${shopifyConnection.shopUrl}".
+Please provide clear, concise insights based on this store data:
 ${JSON.stringify(shopifyData, null, 2)}
 
-Please provide insights based on this specific store's data.`
+When answering:
+1. Use specific numbers and data points
+2. Keep responses brief and focused
+3. If asked about prices or revenue, always include the currency symbol ($)
+4. If data is not available, clearly state that`
 
     // Get AI response with retry logic
     let aiResponse = null
@@ -97,6 +105,7 @@ Please provide insights based on this specific store's data.`
 
     while (retries < MAX_RETRIES && !aiResponse) {
       try {
+        console.log('Attempting AI request, attempt:', retries + 1)
         const completion = await openai.chat.completions.create({
           model: "gpt-3.5-turbo",
           messages: [
@@ -109,10 +118,14 @@ Please provide insights based on this specific store's data.`
               content: message
             }
           ],
+          temperature: 0.7,
+          max_tokens: 300 // Reduced for more concise responses
         })
 
         aiResponse = completion.choices[0]?.message?.content
+        console.log('AI response received:', aiResponse)
       } catch (error) {
+        console.error('AI request attempt failed:', error)
         retries++
         if (retries === MAX_RETRIES) throw error
         await new Promise(resolve => setTimeout(resolve, RETRY_DELAY * retries))
@@ -127,7 +140,7 @@ Please provide insights based on this specific store's data.`
     const savedMessage = await prisma.chatMessage.create({
       data: {
         sessionId: session.id,
-        storeId, // Add storeId to AI message
+        storeId,
         role: 'assistant',
         content: aiResponse,
         userId
