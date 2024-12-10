@@ -72,7 +72,7 @@ export default function StoreDataPage() {
     setIsLoading(true)
     setError(null)
     try {
-      const response = await fetch(`/api/shopify/store-data/${storeId}`)
+      const response = await fetch(`/api/shopify/store-data?storeId=${storeId}`)
       if (!response.ok) {
         throw new Error(`Error: ${response.statusText}`)
       }
@@ -106,7 +106,7 @@ export default function StoreDataPage() {
       document.body.removeChild(a)
     } catch (error) {
       console.error('Download error:', error)
-      // Handle error (show toast, etc.)
+      setError(error instanceof Error ? error.message : 'Failed to download CSV')
     }
   }
 
