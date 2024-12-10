@@ -3,10 +3,14 @@ import { prisma } from '@/lib/prisma'
 import { ShopifyClient } from '@/lib/shopify'
 import { NextRequest } from 'next/server'
 
-export async function GET(
-  request: NextRequest,
-  { params }: { params: { storeId: string } }
-) {
+type RouteParams = {
+  params: {
+    storeId: string
+  }
+  searchParams: { [key: string]: string | string[] | undefined }
+}
+
+export async function GET(request: NextRequest, { params }: RouteParams) {
   try {
     const { userId } = await auth()
     if (!userId) {
@@ -49,16 +53,16 @@ export async function GET(
     let data: any[] = []
     switch (dataType) {
       case 'products':
-        data = await shopify.getAllProducts() || []
+        data = await shopify.getAllProducts()
         break
       case 'orders':
-        data = await shopify.getAllOrders() || []
+        data = await shopify.getAllOrders()
         break
       case 'customers':
-        data = await shopify.getAllCustomers() || []
+        data = await shopify.getAllCustomers()
         break
       case 'analytics':
-        data = await shopify.getAllAnalytics() || []
+        data = await shopify.getAllAnalytics()
         break
       default:
         return new Response(JSON.stringify({ error: 'Invalid data type' }), { 
