@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react'
 import { Card } from '@/components/ui/Card'
-import { Tab } from '@headlessui/react'
 import { ArrowDownTrayIcon } from '@heroicons/react/24/outline'
 
 type StoreDataItem = {
@@ -42,6 +41,7 @@ export default function StoreDataPage() {
   const [storeData, setStoreData] = useState<StoreData>({})
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
+  const [activeTab, setActiveTab] = useState<'products' | 'orders' | 'customers' | 'analytics'>('products')
 
   useEffect(() => {
     fetchStores()
@@ -152,93 +152,90 @@ export default function StoreDataPage() {
         </Card>
       ) : (
         selectedStore && !error && (
-          <Tab.Group>
-            <Tab.List className="flex space-x-1 rounded-xl bg-blue-900/20 p-1">
+          <div>
+            <div className="flex space-x-1 rounded-xl bg-blue-900/20 p-1">
               {Object.entries(selectedStore.availableData).map(([type, available]) => (
-                <Tab
+                <button
                   key={type}
                   disabled={!available}
-                  className={({ selected }) =>
-                    `w-full rounded-lg py-2.5 text-sm font-medium leading-5
-                    ${selected
+                  onClick={() => setActiveTab(type as typeof activeTab)}
+                  className={`
+                    w-full rounded-lg py-2.5 text-sm font-medium leading-5
+                    ${activeTab === type
                       ? 'bg-white text-blue-700 shadow'
                       : 'text-blue-100 hover:bg-white/[0.12] hover:text-white'
                     }
                     ${!available && 'opacity-50 cursor-not-allowed'}
-                    `
-                  }
+                  `}
                 >
                   {type.charAt(0).toUpperCase() + type.slice(1)}
-                </Tab>
+                </button>
               ))}
-            </Tab.List>
-            <Tab.Panels className="mt-2">
-              {Object.entries(selectedStore.availableData).map(([type, available]) => (
-                <Tab.Panel key={type}>
-                  <Card>
-                    <div className="space-y-4">
-                      <div className="flex justify-between items-center">
-                        <div>
-                          <h3 className="text-lg font-medium">
-                            {type.charAt(0).toUpperCase() + type.slice(1)}
-                          </h3>
-                          <p className="text-sm text-gray-500">
-                            Total: {storeData[type as keyof StoreData]?.total || 'N/A'}
-                          </p>
-                        </div>
-                        {available && (
-                          <button
-                            onClick={() => downloadCsv(type)}
-                            className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700"
-                          >
-                            <ArrowDownTrayIcon className="w-4 h-4" />
-                            Export CSV
-                          </button>
-                        )}
-                      </div>
+            </div>
 
-                      {storeData[type as keyof StoreData]?.isEmpty ? (
-                        <div className="p-4 text-gray-500 bg-gray-50 rounded-lg">
-                          No {type} data available
-                        </div>
-                      ) : (
-                        <div className="overflow-x-auto">
-                          <table className="min-w-full divide-y divide-gray-200">
-                            <thead>
-                              <tr>
-                                {storeData[type as keyof StoreData]?.fields.map((field) => (
-                                  <th
-                                    key={field}
-                                    className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                                  >
-                                    {field}
-                                  </th>
-                                ))}
-                              </tr>
-                            </thead>
-                            <tbody className="bg-white divide-y divide-gray-200">
-                              {storeData[type as keyof StoreData]?.sample.map((item, index) => (
-                                <tr key={index}>
-                                  {storeData[type as keyof StoreData]?.fields.map((field) => (
-                                    <td
-                                      key={field}
-                                      className="px-6 py-4 whitespace-nowrap text-sm text-gray-500"
-                                    >
-                                      {item[field] || 'N/A'}
-                                    </td>
-                                  ))}
-                                </tr>
-                              ))}
-                            </tbody>
-                          </table>
-                        </div>
-                      )}
+            <div className="mt-2">
+              <Card>
+                <div className="space-y-4">
+                  <div className="flex justify-between items-center">
+                    <div>
+                      <h3 className="text-lg font-medium">
+                        {activeTab.charAt(0).toUpperCase() + activeTab.slice(1)}
+                      </h3>
+                      <p className="text-sm text-gray-500">
+                        Total: {storeData[activeTab]?.total || 'N/A'}
+                      </p>
                     </div>
-                  </Card>
-                </Tab.Panel>
-              ))}
-            </Tab.Panels>
-          </Tab.Group>
+                    {selectedStore.availableData[activeTab] && (
+                      <button
+                        onClick={() => downloadCsv(activeTab)}
+                        className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700"
+                      >
+                        <ArrowDownTrayIcon className="w-4 h-4" />
+                        Export CSV
+                      </button>
+                    )}
+                  </div>
+
+                  {storeData[activeTab]?.isEmpty ? (
+                    <div className="p-4 text-gray-500 bg-gray-50 rounded-lg">
+                      No {activeTab} data available
+                    </div>
+                  ) : (
+                    <div className="overflow-x-auto">
+                      <table className="min-w-full divide-y divide-gray-200">
+                        <thead>
+                          <tr>
+                            {storeData[activeTab]?.fields.map((field) => (
+                              <th
+                                key={field}
+                                className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                              >
+                                {field}
+                              </th>
+                            ))}
+                          </tr>
+                        </thead>
+                        <tbody className="bg-white divide-y divide-gray-200">
+                          {storeData[activeTab]?.sample.map((item, index) => (
+                            <tr key={index}>
+                              {storeData[activeTab]?.fields.map((field) => (
+                                <td
+                                  key={field}
+                                  className="px-6 py-4 whitespace-nowrap text-sm text-gray-500"
+                                >
+                                  {item[field] || 'N/A'}
+                                </td>
+                              ))}
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  )}
+                </div>
+              </Card>
+            </div>
+          </div>
         )
       )}
     </div>

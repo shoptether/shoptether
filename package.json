@@ -11,15 +11,14 @@
     "postinstall": "prisma generate"
   },
   "dependencies": {
-    "@clerk/nextjs": "^6.0.2",
-    "@headlessui/react": "^1.7.17",
+    "@clerk/nextjs": "^4.29.9",
     "@heroicons/react": "^2.1.5",
     "@prisma/client": "latest",
     "@radix-ui/react-dialog": "^1.1.2",
     "@sentry/nextjs": "^8.38.0",
     "@shopify/shopify-api": "^11.6.0",
-    "@tremor/react": "^3.18.6",
     "@types/js-cookie": "^3.0.6",
+    "chart.js": "^4.4.7",
     "clsx": "^2.1.1",
     "framer-motion": "^10.18.0",
     "js-cookie": "^3.0.5",
@@ -27,6 +26,7 @@
     "openai": "^4.76.0",
     "prisma": "latest",
     "react": "^18.2.0",
+    "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.2.0",
     "react-hot-toast": "^2.4.1",
     "tailwind-merge": "^2.5.4"

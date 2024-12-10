@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react'
 import { Card } from '@/components/ui/Card'
-import { Title, Text, Button, TextInput, Badge } from '@tremor/react'
+import { Button } from '@/components/ui/Button'
 import { PaperAirplaneIcon } from '@heroicons/react/24/solid'
 
 type Message = {
@@ -22,6 +22,20 @@ type Store = {
     customers: boolean
     analytics: boolean
   }
+}
+
+const Badge = ({ children, color = 'gray' }: { children: React.ReactNode, color?: 'green' | 'red' | 'gray' }) => {
+  const colors = {
+    green: 'bg-green-100 text-green-800',
+    red: 'bg-red-100 text-red-800',
+    gray: 'bg-gray-100 text-gray-800'
+  }
+  
+  return (
+    <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${colors[color]}`}>
+      {children}
+    </span>
+  )
 }
 
 export default function AIAnalystPage() {
@@ -184,17 +198,20 @@ export default function AIAnalystPage() {
           </div>
 
           <form onSubmit={handleSubmit} className="flex gap-2">
-            <TextInput
+            <input
+              type="text"
               placeholder="Ask about your store's data..."
               value={input}
               onChange={(e) => setInput(e.target.value)}
               disabled={!selectedStoreId || isLoading}
+              className="flex-1 rounded-md border border-gray-300 px-3 py-2 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
             />
             <Button 
               type="submit"
               disabled={!selectedStoreId || isLoading}
-              icon={PaperAirplaneIcon}
+              className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50"
             >
+              <PaperAirplaneIcon className="h-5 w-5 mr-2" />
               Send
             </Button>
           </form>

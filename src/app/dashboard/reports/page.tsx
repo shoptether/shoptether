@@ -2,7 +2,47 @@
 
 import { useState } from 'react'
 import { ReportVisualization } from '@/components/reports/ReportVisualization'
-import type { Report, ReportType, TimeFrame } from '@/lib/types'
+import type { Report, TimeFrame } from '@/lib/types'
+
+const reportTypes = [
+  { 
+    id: 'TOP_REVENUE_PRODUCTS', 
+    name: 'Top Revenue Products',
+    description: 'Shows your highest revenue-generating products'
+  },
+  { 
+    id: 'PAYMENT_METHODS', 
+    name: 'Payment Methods Analysis',
+    description: 'Analyzes customer payment preferences'
+  },
+  { 
+    id: 'TOP_SELLING_PRODUCTS', 
+    name: 'Top Selling Products',
+    description: 'Ranks products by quantity sold'
+  },
+  { 
+    id: 'HOURLY_PATTERNS', 
+    name: 'Hourly Sales Patterns',
+    description: 'Shows sales distribution across hours'
+  },
+  { 
+    id: 'WEEKLY_TRENDS', 
+    name: 'Weekly Sales Trends',
+    description: 'Analyzes sales patterns by day of week'
+  },
+  { 
+    id: 'MONTHLY_TRENDS', 
+    name: 'Monthly Sales Trends',
+    description: 'Shows sales distribution across months'
+  },
+  { 
+    id: 'PRODUCT_COMBINATIONS', 
+    name: 'Product Combinations',
+    description: 'Identifies frequently bought together items'
+  },
+] as const
+
+type ReportType = typeof reportTypes[number]['id']
 
 export default function ReportsPage() {
   const [selectedStore, setSelectedStore] = useState<string>('')
@@ -11,44 +51,6 @@ export default function ReportsPage() {
   const [reportData, setReportData] = useState<Report | null>(null)
   const [isLoading, setIsLoading] = useState(false)
   const [activeTab, setActiveTab] = useState<'chart' | 'data' | 'insights'>('chart')
-
-  const reportTypes = [
-    { 
-      id: 'TOP_REVENUE_PRODUCTS', 
-      name: 'Top Revenue Products',
-      description: 'Shows your highest revenue-generating products'
-    },
-    { 
-      id: 'PAYMENT_METHODS', 
-      name: 'Payment Methods Analysis',
-      description: 'Analyzes customer payment preferences'
-    },
-    { 
-      id: 'TOP_SELLING_PRODUCTS', 
-      name: 'Top Selling Products',
-      description: 'Ranks products by quantity sold'
-    },
-    { 
-      id: 'HOURLY_PATTERNS', 
-      name: 'Hourly Sales Patterns',
-      description: 'Shows sales distribution across hours'
-    },
-    { 
-      id: 'WEEKLY_TRENDS', 
-      name: 'Weekly Sales Trends',
-      description: 'Analyzes sales patterns by day of week'
-    },
-    { 
-      id: 'MONTHLY_TRENDS', 
-      name: 'Monthly Sales Trends',
-      description: 'Shows sales distribution across months'
-    },
-    { 
-      id: 'PRODUCT_COMBINATIONS', 
-      name: 'Product Combinations',
-      description: 'Identifies frequently bought together items'
-    },
-  ] as const
 
   const timeframes = [
     { value: 'day', label: 'Last 24 Hours' },
@@ -196,7 +198,7 @@ export default function ReportsPage() {
             <div className="p-4">
               {activeTab === 'chart' && (
                 <ReportVisualization 
-                  type={selectedReport as ReportType} 
+                  type={selectedReport} 
                   data={reportData} 
                 />
               )}
