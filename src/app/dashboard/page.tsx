@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Card, Title, Text, TextInput, Button } from '@tremor/react'
 
 export default function DashboardPage() {
@@ -8,6 +8,25 @@ export default function DashboardPage() {
   const [token, setToken] = useState('')
   const [status, setStatus] = useState('')
   const [isConnected, setIsConnected] = useState(false)
+
+  useEffect(() => {
+    const checkExistingConnection = async () => {
+      try {
+        const response = await fetch('/api/shopify/connection-status')
+        const data = await response.json()
+        
+        if (data.connected) {
+          setIsConnected(true)
+          setDomain(data.shopUrl)
+          setStatus('Store already connected!')
+        }
+      } catch (error) {
+        console.error('Error checking connection:', error)
+      }
+    }
+
+    checkExistingConnection()
+  }, [])
 
   const testConnection = async (domain: string, token: string) => {
     try {
@@ -24,7 +43,8 @@ export default function DashboardPage() {
         setStatus(`Connection successful! Product count: ${data.count}`)
         return true
       } else {
-        setStatus('Connection failed')
+        const error = await response.json()
+        setStatus('Connection failed: ' + (error.error || 'Unknown error'))
         return false
       }
     } catch (error) {
@@ -35,7 +55,6 @@ export default function DashboardPage() {
 
   const handleConnect = async () => {
     if (await testConnection(domain, token)) {
-      // If connection successful, save the credentials
       try {
         const response = await fetch('/api/shopify/connect', {
           method: 'POST',
@@ -72,6 +91,7 @@ export default function DashboardPage() {
                 value={domain}
                 onChange={(e) => setDomain(e.target.value)}
                 className="max-w-md"
+                disabled={isConnected}
               />
               <TextInput 
                 placeholder="Admin API access token"
@@ -79,19 +99,26 @@ export default function DashboardPage() {
                 value={token}
                 onChange={(e) => setToken(e.target.value)}
                 className="max-w-md"
+                disabled={isConnected}
               />
-              <Button onClick={handleConnect} className="max-w-md">
+              <Button 
+                onClick={handleConnect} 
+                className="max-w-md"
+                disabled={isConnected}
+              >
                 Connect Store
               </Button>
             </div>
             {status && (
-              <Text className={status.includes('successful') ? 'text-green-600' : 'text-red-600'}>
+              <Text className={status.includes('successful') || status.includes('already') ? 'text-green-600' : 'text-red-600'}>
                 {status}
               </Text>
             )}
-            <Text className="text-sm text-gray-500">
-              During development, you'll need to provide your Admin API access token after connecting.
-            </Text>
+            {!isConnected && (
+              <Text className="text-sm text-gray-500">
+                During development, you'll need to provide your Admin API access token after connecting.
+              </Text>
+            )}
           </div>
         </div>
       </Card>

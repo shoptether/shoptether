@@ -19,6 +19,7 @@ model ShopifyConnection {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
   recommendations RecommendationConfig?
+  chatSessions ChatSession[]
 
   @@unique([userId, shopUrl])
 }
@@ -63,4 +64,29 @@ model RecommendationMetric {
   @@index([configId])
   @@index([timestamp])
   @@index([type])
+}
+
+model ChatSession {
+  id            String    @id @default(cuid())
+  userId        String
+  shopUrl       String
+  title         String    @default("New Analysis")
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  messages      ChatMessage[]
+  shopifyConnection ShopifyConnection @relation(fields: [userId, shopUrl], references: [userId, shopUrl])
+
+  @@index([userId])
+  @@index([createdAt])
+}
+
+model ChatMessage {
+  id        String      @id @default(cuid())
+  sessionId String
+  role      String      // 'user' or 'assistant'
+  content   String      @db.Text
+  createdAt DateTime    @default(now())
+  session   ChatSession @relation(fields: [sessionId], references: [id])
+
+  @@index([sessionId])
 }
