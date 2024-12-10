@@ -1,11 +1,13 @@
 import { auth } from '@clerk/nextjs/server'
 import { prisma } from '@/lib/prisma'
 import { ShopifyClient } from '@/lib/shopify'
-import { NextRequest } from 'next/server'
+import { type NextRequest } from 'next/server'
+
+type Params = { storeId: string }
 
 export async function GET(
   request: NextRequest,
-  context: { params: { storeId: string } }
+  { params }: { params: Params }
 ) {
   try {
     const { userId } = await auth()
@@ -28,7 +30,7 @@ export async function GET(
 
     const shopifyConnection = await prisma.shopifyConnection.findFirst({
       where: {
-        id: context.params.storeId,
+        id: params.storeId,
         userId,
         status: 'ACTIVE'
       }
