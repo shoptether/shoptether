@@ -124,17 +124,24 @@ export default function AIAnalystPage() {
               <h2 className="text-xl font-semibold">AI Store Analyst</h2>
               <p className="text-gray-500">Select a store to analyze</p>
             </div>
-            <Select 
-              value={selectedStoreId} 
-              onValueChange={handleStoreChange}
-              className="max-w-xs"
-            >
-              {stores.map((store) => (
-                <SelectItem key={store.id} value={store.id}>
-                  {store.shopName}
-                </SelectItem>
-              ))}
-            </Select>
+            <div className="w-64">
+              <Select
+                value={selectedStoreId}
+                onValueChange={setSelectedStoreId}
+                placeholder="Select a store"
+                enableClear={false}
+              >
+                {stores.map((store) => (
+                  <SelectItem 
+                    key={store.id} 
+                    value={store.id}
+                    className="cursor-pointer"
+                  >
+                    {store.shopName}
+                  </SelectItem>
+                ))}
+              </Select>
+            </div>
           </div>
 
           {selectedStore && (
