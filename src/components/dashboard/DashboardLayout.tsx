@@ -4,13 +4,15 @@ import { UserButton } from "@clerk/nextjs"
 import { 
   HomeIcon, 
   Cog6ToothIcon, 
-  SparklesIcon
+  SparklesIcon,
+  DocumentTextIcon
 } from '@heroicons/react/24/outline'
 
 export function DashboardLayout({ children }: { children: React.ReactNode }) {
   const navigation = [
     { name: 'Overview', href: '/dashboard', icon: HomeIcon },
-    { name: 'AI Services', href: '/dashboard/ai-services', icon: SparklesIcon },
+    { name: 'AI Analyst', href: '/dashboard/ai-analyst', icon: SparklesIcon },
+    { name: 'Saved Reports', href: '/dashboard/reports', icon: DocumentTextIcon },
     { name: 'Settings', href: '/dashboard/settings', icon: Cog6ToothIcon },
   ]
 

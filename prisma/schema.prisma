@@ -13,6 +13,8 @@ model ShopifyConnection {
   userId      String
   shopUrl     String
   accessToken String
+  shopName    String
+  shopId      String
   status      String   @default("ACTIVE")
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
@@ -36,7 +38,6 @@ model RecommendationConfig {
   detailedMetrics RecommendationMetric[]    
 }
 
-// Existing aggregated metrics model
 model RecommendationMetrics {
   id                  String   @id @default(cuid())
   configId            String
@@ -50,7 +51,6 @@ model RecommendationMetrics {
   @@index([date])
 }
 
-// New detailed events model
 model RecommendationMetric {
   id          String   @id @default(cuid())
   type        String   // 'impression', 'click', or 'conversion'
