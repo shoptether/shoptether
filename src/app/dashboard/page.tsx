@@ -1,8 +1,9 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { Card, Title, Text, TextInput, Button, Badge } from '@tremor/react'
-import { TrashIcon, MinusCircleIcon } from '@heroicons/react/24/outline'
+import { Card } from '@/components/ui/Card'
+import { Title, Text, TextInput, Button, Badge } from '@tremor/react'
+import { TrashIcon } from '@heroicons/react/24/outline'
 
 type StoreConnection = {
   id: string
@@ -124,63 +125,77 @@ export default function DashboardPage() {
 
   return (
     <div className="space-y-6">
-      <Card className="p-6">
-        <Title>Connect Your Shopify Store</Title>
-        <div className="mt-4">
+      {/* Connection Form Card */}
+      <Card>
+        <div className="space-y-4">
+          <div>
+            <h2 className="text-xl font-semibold">Connect Your Shopify Store</h2>
+            <p className="text-gray-500">Enter your store details below</p>
+          </div>
+          
           <div className="space-y-4">
-            <Text>To get started, connect your Shopify store:</Text>
-            <div className="flex flex-col gap-4">
-              <TextInput 
+            <div>
+              <label className="block text-sm font-medium text-gray-700">Store URL</label>
+              <TextInput
                 placeholder="your-store.myshopify.com"
                 value={domain}
                 onChange={(e) => setDomain(e.target.value)}
                 className="max-w-md"
                 disabled={isConnected}
               />
-              <TextInput 
-                placeholder="Admin API access token"
+            </div>
+            
+            <div>
+              <label className="block text-sm font-medium text-gray-700">Access Token</label>
+              <TextInput
                 type="password"
+                placeholder="shpat_xxxxx"
                 value={token}
                 onChange={(e) => setToken(e.target.value)}
                 className="max-w-md"
                 disabled={isConnected}
               />
-              <Button 
-                onClick={handleConnect} 
-                className="max-w-md"
-                disabled={isConnected}
-              >
-                Connect Store
-              </Button>
             </div>
+
+            <Button 
+              onClick={handleConnect}
+              className="max-w-md"
+              disabled={isConnected}
+            >
+              Connect Store
+            </Button>
+            
             {status && (
-              <Text className={status.includes('successful') || status.includes('already') ? 'text-green-600' : 'text-red-600'}>
+              <p className={status.includes('successful') || status.includes('already') ? 'text-green-600' : 'text-red-600'}>
                 {status}
-              </Text>
+              </p>
             )}
+
             {!isConnected && (
-              <Text className="text-sm text-gray-500">
+              <p className="text-sm text-gray-500">
                 During development, you'll need to provide your Admin API access token after connecting.
-              </Text>
+              </p>
             )}
           </div>
         </div>
       </Card>
 
+      {/* Connected Stores Grid */}
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {connectedStores.map((store) => (
           <Card key={store.id} className="relative">
             <div className="flex justify-between items-start">
-              <div>
-                <Title>{store.shopName}</Title>
-                <Text>{store.shopUrl}</Text>
-                <Badge color="green">Connected</Badge>
+              <div className="space-y-2">
+                <h3 className="text-lg font-semibold">{store.shopName}</h3>
+                <p className="text-gray-500">{store.shopUrl}</p>
+                <Badge color="green" className="mt-2">Connected</Badge>
               </div>
               <Button
                 variant="light"
                 color="red"
                 icon={TrashIcon}
                 onClick={() => disconnectStore(store.id)}
+                className="absolute top-4 right-4"
               >
                 Disconnect
               </Button>
@@ -189,21 +204,24 @@ export default function DashboardPage() {
         ))}
       </div>
 
+      {/* Available Data Grid */}
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {connectedStores.map((store) => (
           <Card key={store.id}>
-            <Title>{store.shopName} - Available Data</Title>
-            <div className="mt-4 space-y-2">
-              {Object.entries(store.availableData).map(([type, available]) => (
-                <div key={type} className="flex items-center gap-2">
-                  {available ? (
-                    <Badge color="green">Available</Badge>
-                  ) : (
-                    <Badge color="red">Not Available</Badge>
-                  )}
-                  <Text>{type.charAt(0).toUpperCase() + type.slice(1)}</Text>
-                </div>
-              ))}
+            <div className="space-y-4">
+              <h3 className="text-lg font-semibold">{store.shopName} - Available Data</h3>
+              <div className="space-y-2">
+                {Object.entries(store.availableData).map(([type, available]) => (
+                  <div key={type} className="flex items-center justify-between">
+                    <span className="capitalize">{type}</span>
+                    {available ? (
+                      <Badge color="green">Available</Badge>
+                    ) : (
+                      <Badge color="red">Not Available</Badge>
+                    )}
+                  </div>
+                ))}
+              </div>
             </div>
           </Card>
         ))}
