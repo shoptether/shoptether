@@ -42,8 +42,8 @@ export default function AIAnalystPage() {
       const response = await fetch('/api/shopify/stores')
       if (response.ok) {
         const data = await response.json()
+        console.log('Fetched stores:', data.stores)
         setStores(data.stores)
-        // Select the first store by default if available
         if (data.stores.length > 0 && !selectedStoreId) {
           setSelectedStoreId(data.stores[0].id)
         }
