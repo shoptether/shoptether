@@ -4,7 +4,7 @@ import { NextRequest } from 'next/server'
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { storeId: string } }
+  context: { params: { storeId: string } }
 ) {
   try {
     const { userId } = await auth()
@@ -17,7 +17,7 @@ export async function DELETE(
 
     await prisma.shopifyConnection.update({
       where: {
-        id: params.storeId,
+        id: context.params.storeId,
         userId,
       },
       data: {
