@@ -78,20 +78,25 @@ export default function AIAnalystPage() {
         },
         body: JSON.stringify({
           message: userMessage.content,
-          storeId: selectedStoreId
+          storeId: selectedStoreId,
+          sessionId: null
         }),
       })
 
       if (!response.ok) {
-        throw new Error('Failed to get AI response')
+        throw new Error(`Failed to get AI response: ${response.statusText}`)
       }
 
       const data = await response.json()
       
+      if (!data.message || !data.message.content) {
+        throw new Error('Invalid response format from AI')
+      }
+
       const aiMessage: Message = {
-        id: data.id,
+        id: data.message.id || Date.now().toString(),
         role: 'assistant',
-        content: data.content,
+        content: data.message.content,
         timestamp: new Date()
       }
       
@@ -101,13 +106,19 @@ export default function AIAnalystPage() {
       setMessages(prev => [...prev, {
         id: Date.now().toString(),
         role: 'assistant',
-        content: 'Sorry, I encountered an error processing your request.',
+        content: 'Sorry, I encountered an error processing your request. Please try again.',
         timestamp: new Date()
       }])
     } finally {
       setIsLoading(false)
     }
   }
+
+  useEffect(() => {
+    if (messagesEndRef.current) {
+      messagesEndRef.current.scrollIntoView({ behavior: 'smooth' })
+    }
+  }, [messages])
 
   return (
     <div className="space-y-6">
