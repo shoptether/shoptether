@@ -1,9 +1,9 @@
 'use client'
 
 import { useState } from 'react'
-import { 
-  Card, 
-  Title, 
+import {
+  Card,
+  Title,
   Text,
   Select,
   SelectItem,
@@ -14,7 +14,7 @@ import {
   TabGroup,
   TabPanel,
   TabPanels
-} from '@tremor/react'
+} from "@tremor/react";
 import { ReportVisualization } from '@/components/reports/ReportVisualization'
 import type { Report, ReportType, TimeFrame } from '@/lib/types'
 
