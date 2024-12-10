@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { Card } from '@/components/ui/Card'
-import { Title, Text, Tab, TabList, TabGroup, TabPanel, TabPanels } from '@tremor/react'
+import { Tab } from '@headlessui/react'
 import { ArrowDownTrayIcon } from '@heroicons/react/24/outline'
 
 type StoreDataItem = {
@@ -147,23 +147,39 @@ export default function StoreDataPage() {
         </Card>
       ) : (
         selectedStore && !error && (
-          <TabGroup>
-            <TabList>
+          <Tab.Group>
+            <Tab.List className="flex space-x-1 rounded-xl bg-blue-900/20 p-1">
               {Object.entries(selectedStore.availableData).map(([type, available]) => (
-                <Tab key={type} disabled={!available}>
+                <Tab
+                  key={type}
+                  disabled={!available}
+                  className={({ selected }) =>
+                    `w-full rounded-lg py-2.5 text-sm font-medium leading-5
+                    ${selected
+                      ? 'bg-white text-blue-700 shadow'
+                      : 'text-blue-100 hover:bg-white/[0.12] hover:text-white'
+                    }
+                    ${!available && 'opacity-50 cursor-not-allowed'}
+                    `
+                  }
+                >
                   {type.charAt(0).toUpperCase() + type.slice(1)}
                 </Tab>
               ))}
-            </TabList>
-            <TabPanels>
+            </Tab.List>
+            <Tab.Panels className="mt-2">
               {Object.entries(selectedStore.availableData).map(([type, available]) => (
-                <TabPanel key={type}>
+                <Tab.Panel key={type}>
                   <Card>
                     <div className="space-y-4">
                       <div className="flex justify-between items-center">
                         <div>
-                          <Title>{type.charAt(0).toUpperCase() + type.slice(1)}</Title>
-                          <Text>Total: {storeData[type as keyof StoreData]?.total || 'N/A'}</Text>
+                          <h3 className="text-lg font-medium">
+                            {type.charAt(0).toUpperCase() + type.slice(1)}
+                          </h3>
+                          <p className="text-sm text-gray-500">
+                            Total: {storeData[type as keyof StoreData]?.total || 'N/A'}
+                          </p>
                         </div>
                         {available && (
                           <button
@@ -214,10 +230,10 @@ export default function StoreDataPage() {
                       )}
                     </div>
                   </Card>
-                </TabPanel>
+                </Tab.Panel>
               ))}
-            </TabPanels>
-          </TabGroup>
+            </Tab.Panels>
+          </Tab.Group>
         )
       )}
     </div>
