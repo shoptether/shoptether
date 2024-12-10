@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react'
 import { Card } from '@/components/ui/Card'
-import { Title, Text, Button, TextInput, Select, SelectItem, Badge } from '@tremor/react'
+import { Title, Text, Button, TextInput, Badge } from '@tremor/react'
 import { PaperAirplaneIcon } from '@heroicons/react/24/solid'
 
 type Message = {
@@ -109,14 +109,8 @@ export default function AIAnalystPage() {
     }
   }
 
-  const handleStoreChange = (value: string) => {
-    setSelectedStoreId(value)
-    setMessages([])
-  }
-
   return (
     <div className="space-y-6">
-      {/* Store Selection and Data Availability */}
       <Card>
         <div className="space-y-4">
           <div className="flex justify-between items-start">
@@ -124,24 +118,18 @@ export default function AIAnalystPage() {
               <h2 className="text-xl font-semibold">AI Store Analyst</h2>
               <p className="text-gray-500">Select a store to analyze</p>
             </div>
-            <div className="w-64">
-              <Select
-                value={selectedStoreId}
-                onValueChange={setSelectedStoreId}
-                placeholder="Select a store"
-                enableClear={false}
-              >
-                {stores.map((store) => (
-                  <SelectItem 
-                    key={store.id} 
-                    value={store.id}
-                    className="cursor-pointer"
-                  >
-                    {store.shopName}
-                  </SelectItem>
-                ))}
-              </Select>
-            </div>
+            <select
+              value={selectedStoreId}
+              onChange={(e) => setSelectedStoreId(e.target.value)}
+              className="block w-64 rounded-lg border border-gray-300 bg-white px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+            >
+              <option value="" disabled>Select a store</option>
+              {stores.map((store) => (
+                <option key={store.id} value={store.id}>
+                  {store.shopName}
+                </option>
+              ))}
+            </select>
           </div>
 
           {selectedStore && (
