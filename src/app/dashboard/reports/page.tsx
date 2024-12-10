@@ -1,20 +1,6 @@
 'use client'
 
 import { useState } from 'react'
-import {
-  Card,
-  Title,
-  Text,
-  Select,
-  SelectItem,
-  Button,
-  Grid,
-  Tab,
-  TabList,
-  TabGroup,
-  TabPanel,
-  TabPanels
-} from "@tremor/react";
 import { ReportVisualization } from '@/components/reports/ReportVisualization'
 import type { Report, ReportType, TimeFrame } from '@/lib/types'
 
@@ -24,6 +10,7 @@ export default function ReportsPage() {
   const [selectedTimeframe, setSelectedTimeframe] = useState<TimeFrame>('all')
   const [reportData, setReportData] = useState<Report | null>(null)
   const [isLoading, setIsLoading] = useState(false)
+  const [activeTab, setActiveTab] = useState<'chart' | 'data' | 'insights'>('chart')
 
   const reportTypes = [
     { 
@@ -96,121 +83,142 @@ export default function ReportsPage() {
       setReportData(data)
     } catch (error) {
       console.error('Error generating report:', error)
-      // Add error handling UI feedback here
     } finally {
       setIsLoading(false)
     }
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 p-6">
       <div className="flex justify-between items-center">
         <div>
-          <Title>Reports</Title>
-          <Text>Generate detailed analytics reports for your store</Text>
+          <h1 className="text-2xl font-bold">Reports</h1>
+          <p className="text-gray-600">Generate detailed analytics reports for your store</p>
         </div>
       </div>
 
-      <Grid numItems={1} numItemsSm={2} numItemsLg={3} className="gap-6">
-        <Card>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="bg-white p-6 rounded-lg shadow">
           <div className="space-y-4">
             <div>
-              <Text>Store</Text>
-              <Select
+              <label className="block text-sm font-medium text-gray-700">Store</label>
+              <select
                 value={selectedStore}
-                onValueChange={setSelectedStore}
-                placeholder="Select a store"
-                className="mt-2"
+                onChange={(e) => setSelectedStore(e.target.value)}
+                className="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
               >
-                <SelectItem value="store1">Store 1</SelectItem>
-                <SelectItem value="store2">Store 2</SelectItem>
-              </Select>
+                <option value="">Select a store</option>
+                <option value="store1">Store 1</option>
+                <option value="store2">Store 2</option>
+              </select>
             </div>
 
             <div>
-              <Text>Report Type</Text>
-              <Select
+              <label className="block text-sm font-medium text-gray-700">Report Type</label>
+              <select
                 value={selectedReport}
-                onValueChange={(value) => setSelectedReport(value as ReportType)}
-                placeholder="Select a report type"
-                className="mt-2"
+                onChange={(e) => setSelectedReport(e.target.value as ReportType)}
+                className="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
               >
+                <option value="">Select a report type</option>
                 {reportTypes.map(type => (
-                  <SelectItem key={type.id} value={type.id}>
-                    <div>
-                      <div className="font-medium">{type.name}</div>
-                      <div className="text-xs text-gray-500">{type.description}</div>
-                    </div>
-                  </SelectItem>
+                  <option key={type.id} value={type.id}>
+                    {type.name}
+                  </option>
                 ))}
-              </Select>
+              </select>
+              {selectedReport && (
+                <p className="mt-1 text-sm text-gray-500">
+                  {reportTypes.find(type => type.id === selectedReport)?.description}
+                </p>
+              )}
             </div>
 
             <div>
-              <Text>Time Period</Text>
-              <Select
+              <label className="block text-sm font-medium text-gray-700">Time Period</label>
+              <select
                 value={selectedTimeframe}
-                onValueChange={(value) => setSelectedTimeframe(value as TimeFrame)}
-                className="mt-2"
+                onChange={(e) => setSelectedTimeframe(e.target.value as TimeFrame)}
+                className="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
               >
                 {timeframes.map(timeframe => (
-                  <SelectItem key={timeframe.value} value={timeframe.value}>
+                  <option key={timeframe.value} value={timeframe.value}>
                     {timeframe.label}
-                  </SelectItem>
+                  </option>
                 ))}
-              </Select>
+              </select>
             </div>
 
-            <Button 
+            <button
               onClick={generateReport}
               disabled={!selectedStore || !selectedReport || isLoading}
-              loading={isLoading}
-              className="w-full"
+              className={`w-full py-2 px-4 rounded-md text-white transition-colors
+                ${!selectedStore || !selectedReport || isLoading
+                  ? 'bg-gray-400 cursor-not-allowed'
+                  : 'bg-blue-600 hover:bg-blue-700'
+                }`}
             >
-              Generate Report
-            </Button>
+              {isLoading ? (
+                <span className="flex items-center justify-center">
+                  <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                  </svg>
+                  Generating...
+                </span>
+              ) : (
+                'Generate Report'
+              )}
+            </button>
           </div>
-        </Card>
+        </div>
 
         {reportData && (
-          <Card className="col-span-2">
-            <TabGroup>
-              <TabList>
-                <Tab>Chart</Tab>
-                <Tab>Data</Tab>
-                <Tab>Insights</Tab>
-              </TabList>
-              <TabPanels>
-                <TabPanel>
-                  <div className="mt-4">
-                    <ReportVisualization 
-                      type={selectedReport as ReportType} 
-                      data={reportData} 
-                    />
-                  </div>
-                </TabPanel>
-                <TabPanel>
-                  <div className="mt-4">
-                    <pre className="bg-gray-50 p-4 rounded-lg overflow-auto">
-                      {JSON.stringify(reportData.data, null, 2)}
-                    </pre>
-                  </div>
-                </TabPanel>
-                <TabPanel>
-                  <div className="mt-4">
-                    <Text>Key Insights:</Text>
-                    <ul className="list-disc list-inside mt-2 space-y-2">
-                      {reportData.metadata?.insights?.map((insight, index) => (
-                        <li key={index}>{insight}</li>
-                      ))}
-                    </ul>
-                  </div>
-                </TabPanel>
-              </TabPanels>
-            </TabGroup>
-          </Card>
+          <div className="col-span-2 bg-white rounded-lg shadow">
+            <div className="border-b border-gray-200">
+              <nav className="flex" aria-label="Tabs">
+                {['chart', 'data', 'insights'].map((tab) => (
+                  <button
+                    key={tab}
+                    onClick={() => setActiveTab(tab as typeof activeTab)}
+                    className={`flex-1 py-4 px-1 text-center border-b-2 font-medium text-sm
+                      ${activeTab === tab
+                        ? 'border-blue-500 text-blue-600'
+                        : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                      }`}
+                  >
+                    {tab.charAt(0).toUpperCase() + tab.slice(1)}
+                  </button>
+                ))}
+              </nav>
+            </div>
+
+            <div className="p-4">
+              {activeTab === 'chart' && (
+                <ReportVisualization 
+                  type={selectedReport as ReportType} 
+                  data={reportData} 
+                />
+              )}
+              {activeTab === 'data' && (
+                <pre className="bg-gray-50 p-4 rounded-lg overflow-auto">
+                  {JSON.stringify(reportData.data, null, 2)}
+                </pre>
+              )}
+              {activeTab === 'insights' && (
+                <div>
+                  <p className="font-medium mb-2">Key Insights:</p>
+                  <ul className="list-disc list-inside space-y-2">
+                    {reportData.metadata?.insights?.map((insight, index) => (
+                      <li key={index} className="text-gray-700">{insight}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
+          </div>
         )}
-      </Grid>
+      </div>
     </div>
   )
 }
