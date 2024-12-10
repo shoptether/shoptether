@@ -22,27 +22,7 @@ export default function DashboardPage() {
   const [domain, setDomain] = useState('')
   const [token, setToken] = useState('')
   const [status, setStatus] = useState('')
-  const [isConnected, setIsConnected] = useState(false)
   const [connectedStores, setConnectedStores] = useState<StoreConnection[]>([])
-
-  useEffect(() => {
-    const checkExistingConnection = async () => {
-      try {
-        const response = await fetch('/api/shopify/connection-status')
-        const data = await response.json()
-        
-        if (data.connected) {
-          setIsConnected(true)
-          setDomain(data.shopUrl)
-          setStatus('Store already connected!')
-        }
-      } catch (error) {
-        console.error('Error checking connection:', error)
-      }
-    }
-
-    checkExistingConnection()
-  }, [])
 
   useEffect(() => {
     fetchConnectedStores()
@@ -113,7 +93,9 @@ export default function DashboardPage() {
         
         if (response.ok) {
           setStatus('Store connected successfully! ' + (data.message || ''))
-          setIsConnected(true)
+          setDomain('')
+          setToken('')
+          fetchConnectedStores()
         } else {
           setStatus('Failed to save connection: ' + (data.error || 'Unknown error'))
         }
@@ -129,7 +111,7 @@ export default function DashboardPage() {
       <Card>
         <div className="space-y-4">
           <div>
-            <h2 className="text-xl font-semibold">Connect Your Shopify Store</h2>
+            <h2 className="text-xl font-semibold">Connect a Shopify Store</h2>
             <p className="text-gray-500">Enter your store details below</p>
           </div>
           
@@ -141,7 +123,6 @@ export default function DashboardPage() {
                 value={domain}
                 onChange={(e) => setDomain(e.target.value)}
                 className="max-w-md"
-                disabled={isConnected}
               />
             </div>
             
@@ -153,29 +134,25 @@ export default function DashboardPage() {
                 value={token}
                 onChange={(e) => setToken(e.target.value)}
                 className="max-w-md"
-                disabled={isConnected}
               />
             </div>
 
             <Button 
               onClick={handleConnect}
               className="max-w-md"
-              disabled={isConnected}
             >
               Connect Store
             </Button>
             
             {status && (
-              <p className={status.includes('successful') || status.includes('already') ? 'text-green-600' : 'text-red-600'}>
+              <p className={status.includes('successful') ? 'text-green-600' : 'text-red-600'}>
                 {status}
               </p>
             )}
 
-            {!isConnected && (
-              <p className="text-sm text-gray-500">
-                During development, you'll need to provide your Admin API access token after connecting.
-              </p>
-            )}
+            <p className="text-sm text-gray-500">
+              You'll need to provide your Admin API access token after connecting each store.
+            </p>
           </div>
         </div>
       </Card>
