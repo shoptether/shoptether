@@ -11,10 +11,12 @@ export default function DashboardPage() {
 
   const testConnection = async (domain: string, token: string) => {
     try {
-      const response = await fetch(`https://${domain}/admin/api/2024-01/products/count.json`, {
+      const response = await fetch('/api/shopify/test-connection', {
+        method: 'POST',
         headers: {
-          'X-Shopify-Access-Token': token,
+          'Content-Type': 'application/json',
         },
+        body: JSON.stringify({ shopifyDomain: domain, accessToken: token }),
       })
       
       if (response.ok) {
