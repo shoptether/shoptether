@@ -32,7 +32,7 @@ export async function GET() {
   }
 }
 
-export async function POST() {
+export async function POST(req: Request) {
   try {
     const { userId } = await auth()
     if (!userId) {
@@ -42,7 +42,7 @@ export async function POST() {
       })
     }
 
-    // Get the active Shopify connection
+    // Get the first active store connection for this user
     const shopifyConnection = await prisma.shopifyConnection.findFirst({
       where: {
         userId,
@@ -51,8 +51,8 @@ export async function POST() {
     })
 
     if (!shopifyConnection) {
-      return new Response(JSON.stringify({ error: 'No active Shopify connection' }), {
-        status: 400,
+      return new Response(JSON.stringify({ error: 'No active store connection found' }), { 
+        status: 404,
         headers: { 'Content-Type': 'application/json' }
       })
     }
@@ -61,16 +61,19 @@ export async function POST() {
       data: {
         userId,
         shopUrl: shopifyConnection.shopUrl,
+        storeId: shopifyConnection.id,
         title: `Analysis ${new Date().toLocaleDateString()}`
       }
     })
 
-    return new Response(JSON.stringify({ session }), {
+    return new Response(JSON.stringify(session), {
       status: 200,
       headers: { 'Content-Type': 'application/json' }
     })
+
   } catch (error) {
-    return new Response(JSON.stringify({ error: 'Failed to create session' }), {
+    console.error('Session creation error:', error)
+    return new Response(JSON.stringify({ error: 'Failed to create session' }), { 
       status: 500,
       headers: { 'Content-Type': 'application/json' }
     })
