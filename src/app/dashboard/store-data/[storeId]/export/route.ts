@@ -3,14 +3,10 @@ import { prisma } from '@/lib/prisma'
 import { ShopifyClient } from '@/lib/shopify'
 import { NextRequest } from 'next/server'
 
-type RouteParams = {
-  params: {
-    storeId: string
-  }
-  searchParams: { [key: string]: string | string[] | undefined }
-}
-
-export async function GET(request: NextRequest, { params }: RouteParams) {
+export async function GET(
+  request: NextRequest,
+  context: { params: { storeId: string } }
+) {
   try {
     const { userId } = await auth()
     if (!userId) {
@@ -32,7 +28,7 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
 
     const shopifyConnection = await prisma.shopifyConnection.findFirst({
       where: {
-        id: params.storeId,
+        id: context.params.storeId,
         userId,
         status: 'ACTIVE'
       }
