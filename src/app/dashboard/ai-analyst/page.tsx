@@ -1,7 +1,8 @@
 'use client'
 
 import { useState, useRef, useEffect } from 'react'
-import { Card, Title, Text, Button, TextInput, Select, SelectItem } from '@tremor/react'
+import { Card } from '@/components/ui/Card'
+import { Title, Text, Button, TextInput, Select, SelectItem, Badge } from '@tremor/react'
 import { PaperAirplaneIcon } from '@heroicons/react/24/solid'
 
 type Message = {
@@ -11,82 +12,52 @@ type Message = {
   timestamp: Date
 }
 
-type Session = {
+type Store = {
   id: string
-  title: string
-  createdAt: Date
+  shopName: string
+  shopUrl: string
+  availableData: {
+    products: boolean
+    orders: boolean
+    customers: boolean
+    analytics: boolean
+  }
 }
 
 export default function AIAnalystPage() {
   const [messages, setMessages] = useState<Message[]>([])
   const [input, setInput] = useState('')
   const [isLoading, setIsLoading] = useState(false)
-  const [sessions, setSessions] = useState<Session[]>([])
-  const [currentSessionId, setCurrentSessionId] = useState<string>('')
+  const [stores, setStores] = useState<Store[]>([])
+  const [selectedStoreId, setSelectedStoreId] = useState<string>('')
   const messagesEndRef = useRef<HTMLDivElement>(null)
 
-  // Fetch sessions on component mount
+  // Fetch stores on mount
   useEffect(() => {
-    fetchSessions()
+    fetchStores()
   }, [])
 
-  // Fetch messages when session changes
-  useEffect(() => {
-    if (currentSessionId) {
-      fetchMessages(currentSessionId)
-    } else {
-      setMessages([])
-    }
-  }, [currentSessionId])
-
-  const fetchSessions = async () => {
+  const fetchStores = async () => {
     try {
-      const response = await fetch('/api/chat/sessions')
+      const response = await fetch('/api/shopify/stores')
       if (response.ok) {
         const data = await response.json()
-        setSessions(data.sessions)
+        setStores(data.stores)
+        // Select the first store by default if available
+        if (data.stores.length > 0 && !selectedStoreId) {
+          setSelectedStoreId(data.stores[0].id)
+        }
       }
     } catch (error) {
-      console.error('Error fetching sessions:', error)
+      console.error('Error fetching stores:', error)
     }
   }
 
-  const fetchMessages = async (sessionId: string) => {
-    try {
-      const response = await fetch(`/api/chat/messages?sessionId=${sessionId}`)
-      if (response.ok) {
-        const data = await response.json()
-        setMessages(data.messages)
-      }
-    } catch (error) {
-      console.error('Error fetching messages:', error)
-    }
-  }
-
-  const createNewSession = async () => {
-    try {
-      const response = await fetch('/api/chat/sessions', {
-        method: 'POST',
-      })
-      if (response.ok) {
-        const data = await response.json()
-        setSessions(prev => [...prev, data.session])
-        setCurrentSessionId(data.session.id)
-        setMessages([])
-      }
-    } catch (error) {
-      console.error('Error creating session:', error)
-    }
-  }
+  const selectedStore = stores.find(store => store.id === selectedStoreId)
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (!input.trim() || isLoading) return
-
-    // Create new session if none exists
-    if (!currentSessionId) {
-      await createNewSession()
-    }
+    if (!input.trim() || isLoading || !selectedStoreId) return
 
     const userMessage: Message = {
       id: Date.now().toString(),
@@ -94,6 +65,7 @@ export default function AIAnalystPage() {
       content: input.trim(),
       timestamp: new Date()
     }
+
     setMessages(prev => [...prev, userMessage])
     setInput('')
     setIsLoading(true)
@@ -106,7 +78,7 @@ export default function AIAnalystPage() {
         },
         body: JSON.stringify({
           message: userMessage.content,
-          sessionId: currentSessionId
+          storeId: selectedStoreId
         }),
       })
 
@@ -117,10 +89,10 @@ export default function AIAnalystPage() {
       const data = await response.json()
       
       const aiMessage: Message = {
-        id: data.message.id,
+        id: data.id,
         role: 'assistant',
-        content: data.message.content,
-        timestamp: new Date(data.message.createdAt)
+        content: data.content,
+        timestamp: new Date()
       }
       
       setMessages(prev => [...prev, aiMessage])
@@ -139,80 +111,83 @@ export default function AIAnalystPage() {
 
   return (
     <div className="space-y-6">
-      <div className="flex justify-between items-center">
-        <div>
-          <Title>AI Store Analyst</Title>
-          <Text>Ask questions about your store's data and get AI-powered insights.</Text>
-        </div>
-        <div className="flex gap-4">
-          <Select 
-            value={currentSessionId} 
-            onValueChange={setCurrentSessionId}
-            placeholder="Select conversation"
-          >
-            {sessions.map((session) => (
-              <SelectItem key={session.id} value={session.id}>
-                {session.title}
-              </SelectItem>
-            ))}
-          </Select>
-          <Button onClick={createNewSession}>New Conversation</Button>
-        </div>
-      </div>
+      {/* Store Selection and Data Availability */}
+      <Card>
+        <div className="space-y-4">
+          <div className="flex justify-between items-start">
+            <div>
+              <h2 className="text-xl font-semibold">AI Store Analyst</h2>
+              <p className="text-gray-500">Select a store to analyze</p>
+            </div>
+            <Select 
+              value={selectedStoreId} 
+              onValueChange={setSelectedStoreId}
+              className="max-w-xs"
+            >
+              {stores.map((store) => (
+                <SelectItem key={store.id} value={store.id}>
+                  {store.shopName}
+                </SelectItem>
+              ))}
+            </Select>
+          </div>
 
-      <Card className="h-[600px] flex flex-col">
-        {/* Messages Container */}
-        <div className="flex-1 overflow-y-auto p-4 space-y-4">
-          {messages.length === 0 ? (
-            <div className="text-center text-gray-500 mt-4">
-              <Text>Start by asking a question about your store's data.</Text>
-              <div className="mt-2 space-y-2 text-sm">
-                <p>"What are my top-selling products this month?"</p>
-                <p>"Show me sales trends for the last 30 days"</p>
-                <p>"Which cities have the most customers?"</p>
+          {selectedStore && (
+            <div className="mt-4">
+              <h3 className="text-sm font-medium text-gray-700 mb-2">Available Data Types:</h3>
+              <div className="flex flex-wrap gap-2">
+                {Object.entries(selectedStore.availableData).map(([type, available]) => (
+                  <Badge key={type} color={available ? 'green' : 'red'}>
+                    {type.charAt(0).toUpperCase() + type.slice(1)}
+                  </Badge>
+                ))}
               </div>
             </div>
-          ) : (
-            messages.map((message) => (
+          )}
+        </div>
+      </Card>
+
+      {/* Chat Interface */}
+      <Card>
+        <div className="space-y-4">
+          <div className="h-[400px] overflow-y-auto border rounded-lg p-4">
+            {messages.map((message) => (
               <div
                 key={message.id}
-                className={`flex ${
-                  message.role === 'user' ? 'justify-end' : 'justify-start'
+                className={`mb-4 ${
+                  message.role === 'assistant' ? 'ml-4' : 'mr-4'
                 }`}
               >
                 <div
-                  className={`max-w-[80%] rounded-lg p-4 ${
-                    message.role === 'user'
-                      ? 'bg-blue-600 text-white'
-                      : 'bg-gray-100 text-gray-900'
+                  className={`p-3 rounded-lg ${
+                    message.role === 'assistant'
+                      ? 'bg-gray-100'
+                      : 'bg-blue-100 ml-auto'
                   }`}
                 >
-                  <Text>{message.content}</Text>
+                  {message.content}
                 </div>
               </div>
-            ))
-          )}
-          <div ref={messagesEndRef} />
-        </div>
+            ))}
+            <div ref={messagesEndRef} />
+          </div>
 
-        {/* Input Form */}
-        <form onSubmit={handleSubmit} className="p-4 border-t">
-          <div className="flex gap-2">
+          <form onSubmit={handleSubmit} className="flex gap-2">
             <TextInput
-              placeholder="Ask about your store data..."
+              placeholder="Ask about your store's data..."
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              disabled={isLoading}
+              disabled={!selectedStoreId || isLoading}
             />
-            <Button
+            <Button 
               type="submit"
-              disabled={isLoading}
+              disabled={!selectedStoreId || isLoading}
               icon={PaperAirplaneIcon}
             >
               Send
             </Button>
-          </div>
-        </form>
+          </form>
+        </div>
       </Card>
     </div>
   )

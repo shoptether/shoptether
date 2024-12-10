@@ -20,19 +20,27 @@ export async function POST(req: Request) {
       })
     }
 
-    const { message, sessionId } = await req.json()
+    const { message, sessionId, storeId } = await req.json()
 
-    // Get the active Shopify connection
+    if (!storeId) {
+      return new Response(JSON.stringify({ error: 'Store ID is required' }), { 
+        status: 400,
+        headers: { 'Content-Type': 'application/json' }
+      })
+    }
+
+    // Get the specific store connection
     const shopifyConnection = await prisma.shopifyConnection.findFirst({
       where: {
+        id: storeId,
         userId,
         status: 'ACTIVE'
       }
     })
 
     if (!shopifyConnection) {
-      return new Response(JSON.stringify({ error: 'No active Shopify connection' }), { 
-        status: 400,
+      return new Response(JSON.stringify({ error: 'Store connection not found' }), { 
+        status: 404,
         headers: { 'Content-Type': 'application/json' }
       })
     }
@@ -53,7 +61,8 @@ export async function POST(req: Request) {
         data: {
           userId,
           shopUrl: shopifyConnection.shopUrl,
-          title: 'New Analysis'
+          title: 'New Analysis',
+          storeId // Add storeId to session
         }
       })
 
@@ -68,16 +77,19 @@ export async function POST(req: Request) {
     await prisma.chatMessage.create({
       data: {
         sessionId: session.id,
+        storeId, // Add storeId to message
         role: 'user',
-        content: message
+        content: message,
+        userId
       }
     })
 
-    // Prepare context for AI
-    const context = `You are analyzing data for a Shopify store. Here's the relevant data:
+    // Prepare context for AI with store-specific information
+    const context = `You are analyzing data for the Shopify store "${shopifyConnection.shopUrl}". 
+Here's the relevant data:
 ${JSON.stringify(shopifyData, null, 2)}
 
-Please provide insights based on this data.`
+Please provide insights based on this specific store's data.`
 
     // Get AI response with retry logic
     let aiResponse = null
@@ -115,8 +127,10 @@ Please provide insights based on this data.`
     const savedMessage = await prisma.chatMessage.create({
       data: {
         sessionId: session.id,
+        storeId, // Add storeId to AI message
         role: 'assistant',
-        content: aiResponse
+        content: aiResponse,
+        userId
       }
     })
 

@@ -20,6 +20,7 @@ model ShopifyConnection {
   updatedAt   DateTime @updatedAt
   recommendations RecommendationConfig?
   chatSessions ChatSession[]
+  chatMessages ChatMessage[]  // Add this relation
 
   @@unique([userId, shopUrl])
 }
@@ -70,23 +71,30 @@ model ChatSession {
   id            String    @id @default(cuid())
   userId        String
   shopUrl       String
+  storeId       String    // Add this field
   title         String    @default("New Analysis")
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
   messages      ChatMessage[]
-  shopifyConnection ShopifyConnection @relation(fields: [userId, shopUrl], references: [userId, shopUrl])
+  shopifyConnection ShopifyConnection @relation(fields: [storeId], references: [id])  // Update this relation
 
   @@index([userId])
   @@index([createdAt])
+  @@index([storeId])  // Add this index
 }
 
 model ChatMessage {
   id        String      @id @default(cuid())
   sessionId String
+  storeId   String      // Add this field
+  userId    String      // Add this field
   role      String      // 'user' or 'assistant'
   content   String      @db.Text
   createdAt DateTime    @default(now())
   session   ChatSession @relation(fields: [sessionId], references: [id])
+  store     ShopifyConnection @relation(fields: [storeId], references: [id])  // Add this relation
 
   @@index([sessionId])
+  @@index([storeId])  // Add this index
+  @@index([userId])   // Add this index
 }
