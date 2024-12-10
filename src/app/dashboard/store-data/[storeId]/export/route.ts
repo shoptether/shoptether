@@ -1,13 +1,11 @@
 import { auth } from '@clerk/nextjs/server'
 import { prisma } from '@/lib/prisma'
 import { ShopifyClient } from '@/lib/shopify'
-import { type NextRequest } from 'next/server'
-
-type Params = { storeId: string }
+import { NextRequest } from 'next/server'
 
 export async function GET(
-  request: NextRequest,
-  { params }: { params: Params }
+  req: NextRequest,
+  { params }: { params: { storeId: string } }
 ) {
   try {
     const { userId } = await auth()
@@ -18,7 +16,7 @@ export async function GET(
       })
     }
 
-    const searchParams = request.nextUrl.searchParams
+    const searchParams = req.nextUrl.searchParams
     const dataType = searchParams.get('type')
 
     if (!dataType) {
