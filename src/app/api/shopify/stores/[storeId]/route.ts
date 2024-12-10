@@ -2,15 +2,9 @@ import { auth } from '@clerk/nextjs/server'
 import { prisma } from '@/lib/prisma'
 import { NextRequest } from 'next/server'
 
-interface RouteContext {
-  params: {
-    storeId: string
-  }
-}
-
 export async function DELETE(
   request: NextRequest,
-  { params }: RouteContext
+  context: any
 ) {
   try {
     const { userId } = await auth()
@@ -23,7 +17,7 @@ export async function DELETE(
 
     await prisma.shopifyConnection.update({
       where: {
-        id: params.storeId,
+        id: context.params.storeId,
         userId,
       },
       data: {
