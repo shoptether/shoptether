@@ -1,13 +1,28 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { Card, Title, Text, TextInput, Button } from '@tremor/react'
+import { Card, Title, Text, TextInput, Button, Badge } from '@tremor/react'
+import { TrashIcon, MinusCircleIcon } from '@heroicons/react/24/outline'
+
+type StoreConnection = {
+  id: string
+  shopUrl: string
+  shopName: string
+  status: string
+  availableData: {
+    products: boolean
+    orders: boolean
+    customers: boolean
+    analytics: boolean
+  }
+}
 
 export default function DashboardPage() {
   const [domain, setDomain] = useState('')
   const [token, setToken] = useState('')
   const [status, setStatus] = useState('')
   const [isConnected, setIsConnected] = useState(false)
+  const [connectedStores, setConnectedStores] = useState<StoreConnection[]>([])
 
   useEffect(() => {
     const checkExistingConnection = async () => {
@@ -27,6 +42,35 @@ export default function DashboardPage() {
 
     checkExistingConnection()
   }, [])
+
+  useEffect(() => {
+    fetchConnectedStores()
+  }, [])
+
+  const fetchConnectedStores = async () => {
+    try {
+      const response = await fetch('/api/shopify/stores')
+      if (response.ok) {
+        const data = await response.json()
+        setConnectedStores(data.stores)
+      }
+    } catch (error) {
+      console.error('Error fetching stores:', error)
+    }
+  }
+
+  const disconnectStore = async (storeId: string) => {
+    try {
+      const response = await fetch(`/api/shopify/stores/${storeId}`, {
+        method: 'DELETE',
+      })
+      if (response.ok) {
+        setConnectedStores(prev => prev.filter(store => store.id !== storeId))
+      }
+    } catch (error) {
+      console.error('Error disconnecting store:', error)
+    }
+  }
 
   const testConnection = async (domain: string, token: string) => {
     try {
@@ -124,24 +168,45 @@ export default function DashboardPage() {
       </Card>
 
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        <Card>
-          <Title>Store Status</Title>
-          <Text>{isConnected ? 'Connected' : 'Not Connected'}</Text>
-        </Card>
-        
-        <Card>
-          <Title>Available Data</Title>
-          <Text>
-            {isConnected 
-              ? 'Ready to analyze your store data' 
-              : 'Connect your store to start analyzing data'}
-          </Text>
-        </Card>
-        
-        <Card>
-          <Title>Recent Analyses</Title>
-          <Text>Your recent AI analysis sessions will appear here</Text>
-        </Card>
+        {connectedStores.map((store) => (
+          <Card key={store.id} className="relative">
+            <div className="flex justify-between items-start">
+              <div>
+                <Title>{store.shopName}</Title>
+                <Text>{store.shopUrl}</Text>
+                <Badge color="green">Connected</Badge>
+              </div>
+              <Button
+                variant="light"
+                color="red"
+                icon={TrashIcon}
+                onClick={() => disconnectStore(store.id)}
+              >
+                Disconnect
+              </Button>
+            </div>
+          </Card>
+        ))}
+      </div>
+
+      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {connectedStores.map((store) => (
+          <Card key={store.id}>
+            <Title>{store.shopName} - Available Data</Title>
+            <div className="mt-4 space-y-2">
+              {Object.entries(store.availableData).map(([type, available]) => (
+                <div key={type} className="flex items-center gap-2">
+                  {available ? (
+                    <Badge color="green">Available</Badge>
+                  ) : (
+                    <Badge color="red">Not Available</Badge>
+                  )}
+                  <Text>{type.charAt(0).toUpperCase() + type.slice(1)}</Text>
+                </div>
+              ))}
+            </div>
+          </Card>
+        ))}
       </div>
     </div>
   )
