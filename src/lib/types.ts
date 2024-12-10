@@ -171,6 +171,13 @@ export type ShopifyConnectionDetails = {
   
   export type TimeFrame = 'day' | 'week' | 'month' | 'year' | 'all'
   
+  type ReportMetadata = {
+    timeframe?: TimeFrame
+    total?: number
+    average?: number
+    insights?: string[]
+  }
+  
   export type Report = {
     title: string
     description: string
@@ -181,11 +188,7 @@ export type ShopifyConnectionDetails = {
         data: number[]
       }>
     }
-    metadata?: {
-      timeframe?: TimeFrame
-      total?: number
-      average?: number
-    }
+    metadata?: ReportMetadata
   }
   
   export type SampleData<T> = {
