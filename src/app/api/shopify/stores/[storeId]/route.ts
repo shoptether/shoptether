@@ -1,8 +1,9 @@
 import { auth } from '@clerk/nextjs/server'
 import { prisma } from '@/lib/prisma'
+import { NextRequest } from 'next/server'
 
 export async function DELETE(
-  request: Request,
+  request: NextRequest,
   { params }: { params: { storeId: string } }
 ) {
   try {
