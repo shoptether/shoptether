@@ -7,36 +7,36 @@ graph TD
     Auth --> APIRoutes{API Routes}
     
     %% Shopify Store Management
-    APIRoutes --> StoresAPI[/api/shopify/stores]
+    APIRoutes --> StoresAPI["/api/shopify/stores"]
     StoresAPI --> ListStores[GET: List Active Stores]
     StoresAPI --> DeleteStore[DELETE: Deactivate Store]
     
     %% Store Connection
-    APIRoutes --> ConnectAPI[/api/shopify/connect]
+    APIRoutes --> ConnectAPI["/api/shopify/connect"]
     ConnectAPI --> ValidateStore[Validate Credentials]
     ValidateStore --> StoreDB[(Database)]
     
     %% Store Data Operations
-    APIRoutes --> StoreDataAPI[/api/shopify/store-data]
+    APIRoutes --> StoreDataAPI["/api/shopify/store-data"]
     StoreDataAPI --> FetchProducts[Fetch Products]
     StoreDataAPI --> FetchOrders[Fetch Orders]
     StoreDataAPI --> FetchCustomers[Fetch Customers]
     StoreDataAPI --> FetchAnalytics[Fetch Analytics]
     
     %% Data Export
-    APIRoutes --> ExportAPI[/api/shopify/export]
+    APIRoutes --> ExportAPI["/api/shopify/export"]
     ExportAPI --> ExportProducts[Export Products CSV]
     ExportAPI --> ExportOrders[Export Orders CSV]
     ExportAPI --> ExportCustomers[Export Customers CSV]
     ExportAPI --> ExportAnalytics[Export Analytics CSV]
     
     %% Reports
-    APIRoutes --> ReportsAPI[/api/shopify/reports]
+    APIRoutes --> ReportsAPI["/api/shopify/reports"]
     ReportsAPI --> GenerateReport[Generate Report]
     ReportsAPI --> DetailedReport[Detailed Analysis]
     
     %% Chat System
-    APIRoutes --> ChatAPI[/api/chat]
+    APIRoutes --> ChatAPI["/api/chat"]
     ChatAPI --> ChatSession[Create/Manage Sessions]
     ChatAPI --> ProcessQuery[Process Query]
     ProcessQuery --> FetchContext[Fetch Store Context]
@@ -53,11 +53,11 @@ graph TD
     StoreDB --> ReportsAPI
     
     %% Status Checks
-    APIRoutes --> StatusAPI[/api/shopify/connection-status]
+    APIRoutes --> StatusAPI["/api/shopify/connection-status"]
     StatusAPI --> CheckConnection[Check Store Connection]
     
     %% Test Connection
-    APIRoutes --> TestAPI[/api/shopify/test-connection]
+    APIRoutes --> TestAPI["/api/shopify/test-connection"]
     TestAPI --> ValidateAccess[Validate Access Token]
     
     %% Styling
